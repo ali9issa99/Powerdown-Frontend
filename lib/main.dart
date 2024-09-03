@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:powerdown_frontend/Screens/welcomeScreen.dart';
+import 'package:powerdown_frontend/Screens/welcomeScreen.dart'; 
+import 'package:powerdown_frontend/Screens/loginScreen.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const WelcomeScreen(),
+        '/login': (context) => const LoginScreen(),  
       },
     );
   }
