@@ -34,7 +34,25 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login'); // Navigates to the login screen
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF004D40), // Custom button color
+                      padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                    ),
+                    child: const Text(
+                      "Let's Get Started!",
+                      style: TextStyle(
+                       
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 50), // Adding space at the bottom
                 ],
               ),
