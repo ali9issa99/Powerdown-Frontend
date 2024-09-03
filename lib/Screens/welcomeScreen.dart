@@ -19,7 +19,27 @@ class WelcomeScreen extends StatelessWidget {
             ),
           ),
           // Foreground content
-         
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Text(
+                    'Your Smart Companion for a Cozy, Efficient Home!',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  
+                  const SizedBox(height: 50), // Adding space at the bottom
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
