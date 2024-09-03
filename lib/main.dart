@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:powerdown_frontend/Screens/welcomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +16,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const WelcomeScreen(),
+      },
     );
   }
 }
