@@ -41,6 +41,16 @@ class LoginScreen extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: 20),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'E-mail',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                filled: true,
+                fillColor: Colors.grey[200],
+              ),
+            ),
         ],
         ),
       ),
