@@ -16,7 +16,8 @@ class SignUpScreen extends StatelessWidget {
             Text(
               'Power Down',
               style: TextStyle(
-                
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
