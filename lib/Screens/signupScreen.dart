@@ -51,6 +51,21 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'E-mail',
+                labelStyle: TextStyle(
+                  color: Colors.grey[700],
+                ),
+                filled: true,
+                fillColor: Colors.grey[200],
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
           ],
         ),
       ),
