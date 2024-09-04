@@ -93,13 +93,13 @@ class SignUpScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white, // Set the text color to white
                   padding: const EdgeInsets.symmetric(vertical: 15),
-                  backgroundColor: Colors.teal[700],
+                  backgroundColor: const Color(0xFF004D40),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   textStyle: const TextStyle(
                     fontSize: 18,
-                    
+
                   ),
                 ),
               ),
