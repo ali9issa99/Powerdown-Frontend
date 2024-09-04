@@ -28,7 +28,7 @@ class SignUpScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-             SizedBox(height: 10),
+            SizedBox(height: 10),
             Text(
               "Looks like you don't have an account. Let's create a new account for you.",
               style: TextStyle(
@@ -66,7 +66,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
             ),
-             SizedBox(height: 20),
+            SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -82,20 +82,24 @@ class SignUpScreen extends StatelessWidget {
               ),
               obscureText: true,
             ),
-             SizedBox(height: 30),
+            SizedBox(height: 30),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Sign up'),
+                onPressed: () {
+                  // Handle sign-up action here
+                },
+                child: const Text('Sign up'),
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 15),
+                  foregroundColor: Colors.white, // Set the text color to white
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   backgroundColor: Colors.teal[700],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                     fontSize: 18,
+                    
                   ),
                 ),
               ),
