@@ -95,7 +95,7 @@ class SignUpScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   backgroundColor: const Color(0xFF004D40),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   textStyle: const TextStyle(
                     fontSize: 18,
