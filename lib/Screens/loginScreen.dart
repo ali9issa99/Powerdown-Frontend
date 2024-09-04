@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'signupScreen.dart'; // Import the SignUpScreen
+import 'signupScreen.dart';  // Import the SignUpScreen
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -41,10 +41,10 @@ class LoginScreen extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: 20),
+            // Email TextField with fixed label
             TextField(
               decoration: InputDecoration(
                 label: const Text(
-                  // Fixed label
                   'E-mail',
                   style: TextStyle(
                     fontSize: 16,
@@ -59,10 +59,10 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+            // Password TextField with fixed label
             TextField(
               decoration: InputDecoration(
                 label: const Text(
-                  // Fixed label
                   'Password',
                   style: TextStyle(
                     fontSize: 16,
@@ -89,8 +89,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpScreen()),
+                      MaterialPageRoute(builder: (context) => const SignUpScreen()),
                     );
                   },
                   child: const Text(
@@ -108,8 +107,7 @@ class LoginScreen extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF004D40),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 165, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 165, vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -117,9 +115,10 @@ class LoginScreen extends StatelessWidget {
                 child: const Text(
                   'Login',
                   style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
               ),
             ),
