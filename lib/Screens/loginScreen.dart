@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'signupScreen.dart';  // Import the SignUpScreen
+import 'signupScreen.dart'; // Import the SignUpScreen
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-             const SizedBox(height: 10),
+            const SizedBox(height: 10),
             const Text(
               'Login',
               style: TextStyle(
@@ -43,7 +43,14 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
-                labelText: 'E-mail',
+                label: const Text(
+                  // Fixed label
+                  'E-mail',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
@@ -54,7 +61,14 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 16),
             TextField(
               decoration: InputDecoration(
-                labelText: 'Password',
+                label: const Text(
+                  // Fixed label
+                  'Password',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
@@ -63,7 +77,7 @@ class LoginScreen extends StatelessWidget {
               ),
               obscureText: true,
             ),
-             const SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -75,17 +89,18 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()),
                     );
                   },
                   child: const Text(
-                  'Sign-up',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 105, 190)),
+                    'Sign-up',
+                    style: TextStyle(color: Color.fromARGB(255, 0, 105, 190)),
                   ),
                 ),
-                ],
+              ],
             ),
-             const SizedBox(height: 16),
+            const SizedBox(height: 16),
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -93,7 +108,8 @@ class LoginScreen extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF004D40),
-                  padding: const EdgeInsets.symmetric(horizontal: 165, vertical: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 165, vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -101,14 +117,13 @@ class LoginScreen extends StatelessWidget {
                 child: const Text(
                   'Login',
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
-                    ),
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
-        ],
+          ],
         ),
       ),
     );
