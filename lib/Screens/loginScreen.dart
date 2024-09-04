@@ -1,1 +1,30 @@
 import 'package:flutter/material.dart';
+import 'signupScreen.dart';  // Import the SignUpScreen
+
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(bottom: 50.0),
+              child: Text(
+                'Power Down',
+                style: TextStyle(
+                  
+                ),
+              ),
+            ),
+        ],
+        ),
+      ),
+    );
+  }
+}
