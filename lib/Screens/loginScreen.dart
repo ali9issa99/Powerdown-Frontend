@@ -50,15 +50,20 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: const TextField(
+            // Adjusting TextField size using SizedBox
+            SizedBox(
+              height: 60, // Adjust height
+              width: double.infinity, // Adjust width (full width of the container)
+              child: TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  hintText: 'E-mail', // Placeholder
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                 ),
               ),
             ),
@@ -72,16 +77,20 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: const TextField(
+            SizedBox(
+              height: 60, // Adjust height
+              width: double.infinity, // Adjust width
+              child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  hintText: 'Password', // Placeholder
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                 ),
               ),
             ),
