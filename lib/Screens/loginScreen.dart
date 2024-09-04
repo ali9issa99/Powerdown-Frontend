@@ -41,41 +41,49 @@ class LoginScreen extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: 20),
-            // Email TextField with fixed label
-            TextField(
-              decoration: InputDecoration(
-                label: const Text(
-                  'E-mail',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),
+            // Email Label and TextField
+            const Text(
+              'E-mail',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: const TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
                 ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                filled: true,
-                fillColor: Colors.grey[200],
               ),
             ),
             const SizedBox(height: 16),
-            // Password TextField with fixed label
-            TextField(
-              decoration: InputDecoration(
-                label: const Text(
-                  'Password',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
-                  ),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                filled: true,
-                fillColor: Colors.grey[200],
+            // Password Label and TextField
+            const Text(
+              'Password',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
               ),
-              obscureText: true,
+            ),
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
+              ),
             ),
             const SizedBox(height: 16),
             Row(
