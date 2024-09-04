@@ -31,6 +31,16 @@ class LoginScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 30),
+            const Text(
+              "Sign in to start optimizing your home's energy efficiency.",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.start,
+            ),
+            const SizedBox(height: 20),
         ],
         ),
       ),
