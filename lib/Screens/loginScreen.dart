@@ -102,7 +102,8 @@ class LoginScreen extends StatelessWidget {
                   'Login',
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.white
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
                     ),
                 ),
               ),
