@@ -28,6 +28,14 @@ class SignUpScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+             SizedBox(height: 10),
+            Text(
+              "Looks like you don't have an account. Let's create a new account for you.",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey[600],
+              ),
+            ),
           ],
         ),
       ),
