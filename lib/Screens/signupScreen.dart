@@ -36,6 +36,21 @@ class SignUpScreen extends StatelessWidget {
                 color: Colors.grey[600],
               ),
             ),
+            SizedBox(height: 30),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Name',
+                labelStyle: TextStyle(
+                  color: Colors.grey[700],
+                ),
+                filled: true,
+                fillColor: Colors.grey[200],
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
           ],
         ),
       ),
