@@ -63,6 +63,26 @@ class LoginScreen extends StatelessWidget {
               ),
               obscureText: true,
             ),
+             const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Do not have an account?",
+                  style: TextStyle(color: Color.fromARGB(255, 105, 105, 105)),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                    );
+                  },
+                  child: const Text(
+                  'Sign-up',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 105, 190)),
+                  ),
+                ),
         ],
         ),
       ),
