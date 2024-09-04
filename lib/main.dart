@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:powerdown_frontend/Screens/welcomeScreen.dart'; 
 import 'package:powerdown_frontend/Screens/loginScreen.dart'; 
 import 'package:powerdown_frontend/Screens/signupScreen.dart'; 
+import 'package:powerdown_frontend/Screens/addRoomScreen.dart'; 
 
 void main() {
   runApp(const MyApp());
