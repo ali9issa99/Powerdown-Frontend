@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'signupScreen.dart';  // Import the SignUpScreen
+import 'signupScreen.dart'; // Import the SignUpScreen
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -53,7 +53,8 @@ class LoginScreen extends StatelessWidget {
             // Adjusting TextField size using SizedBox
             SizedBox(
               height: 60, // Adjust height
-              width: double.infinity, // Adjust width (full width of the container)
+              width:
+                  double.infinity, // Adjust width (full width of the container)
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'E-mail', // Placeholder
@@ -63,7 +64,8 @@ class LoginScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: BorderSide.none,
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 ),
               ),
             ),
@@ -90,7 +92,8 @@ class LoginScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: BorderSide.none,
                   ),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 ),
               ),
             ),
@@ -106,7 +109,8 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()),
                     );
                   },
                   child: const Text(
@@ -120,11 +124,13 @@ class LoginScreen extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle login action here
+                  Navigator.pushNamed(
+                      context, '/addRoom'); // Navigate to AddRoomScreen
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF004D40),
-                  padding: const EdgeInsets.symmetric(horizontal: 165, vertical: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 165, vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -132,10 +138,9 @@ class LoginScreen extends StatelessWidget {
                 child: const Text(
                   'Login',
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
-                  ),
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
