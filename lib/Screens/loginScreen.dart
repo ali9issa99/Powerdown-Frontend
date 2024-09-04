@@ -18,7 +18,8 @@ class LoginScreen extends StatelessWidget {
               child: Text(
                 'Power Down',
                 style: TextStyle(
-                  
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
