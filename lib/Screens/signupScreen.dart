@@ -38,6 +38,16 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
+              
+              // Name Label
+              const Text(
+                'Name',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 8), // Space between label and text field
               // Name TextField
               SizedBox(
                 height: 60, // Adjust height
@@ -56,6 +66,16 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
+
+              // Email Label
+              const Text(
+                'E-mail',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 8), // Space between label and text field
               // Email TextField
               SizedBox(
                 height: 60, // Adjust height
@@ -74,6 +94,16 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
+
+              // Password Label
+              const Text(
+                'Password',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 8), // Space between label and text field
               // Password TextField
               SizedBox(
                 height: 60, // Adjust height
@@ -93,6 +123,8 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
+
+              // Sign up Button
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
