@@ -41,30 +41,43 @@ class AddRoomScreen extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomNavigationBar(
-  currentIndex: 0, // Default active tab is 'Home'
-  type: BottomNavigationBarType.fixed,
-  items: [
-    BottomNavigationBarItem(
-      icon: Icon(CustomIcons.home),
-      label: 'Home',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(CustomIcons.analytics),
-      label: 'Analytics',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(CustomIcons.achievements),
-      label: 'Achievements',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(CustomIcons.profile),
-      label: 'Profile',
-    ),
-  ],
-),
-
+        currentIndex: 0, // Default active tab is 'Home'
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/home.svg',
+              width: 24, // Adjust the width/height as needed
+              height: 24,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/analytics.svg',
+              width: 24,
+              height: 24,
+            ),
+            label: 'Analytics',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/achievements.svg',
+              width: 24,
+              height: 24,
+            ),
+            label: 'Achievements',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/profile.svg',
+              width: 24,
+              height: 24,
+            ),
+            label: 'Profile',
+          ),
+        ],
+      ),
     );
   }
 }
-
-
