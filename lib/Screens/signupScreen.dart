@@ -13,7 +13,7 @@ class SignUpScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 150), // Add more space between top and Power Down
+              const SizedBox(height: 120), // Add more space between top and Power Down
               const Text(
                 'Power Down',
                 style: TextStyle(
@@ -34,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
                 "Looks like you don't have an account. Let's create a new account for you.",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.grey[600],
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 30),
