@@ -7,11 +7,14 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView( // Wrap with SingleChildScrollView
+      body: SingleChildScrollView(
+        // Wrap with SingleChildScrollView
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Padding(  // Highlight this widget for adding the top padding
-            padding: const EdgeInsets.only(top: 100.0),  // Drop the whole content by 30 pixels
+          child: Padding(
+            // Highlight this widget for adding the top padding
+            padding: const EdgeInsets.only(
+                top: 100.0), // Drop the whole content by 30 pixels
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -102,8 +105,8 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     const Text(
                       "Do not have an account?",
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 105, 105, 105)),
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 105, 105, 105)),
                     ),
                     TextButton(
                       onPressed: () {
@@ -115,8 +118,8 @@ class LoginScreen extends StatelessWidget {
                       },
                       child: const Text(
                         'Sign-up',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 0, 105, 190)),
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 0, 105, 190)),
                       ),
                     ),
                   ],
@@ -125,8 +128,8 @@ class LoginScreen extends StatelessWidget {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context,
-                          '/addRoomScreen.dart'); // Navigate to AddRoomScreen
+                      Navigator.pushNamed(
+                          context, '/addRoom'); // Navigate to '/addRoom' route
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF004D40),
