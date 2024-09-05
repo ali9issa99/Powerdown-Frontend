@@ -9,12 +9,17 @@ class AddRoomScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Home'),
+        automaticallyImplyLeading: false, // Removes the back arrow
         actions: [
           IconButton(
             onPressed: () {
-              // Action when the add button is pressed
+              // Logic for the custom icon button
             },
-            icon: const Icon(Icons.add),
+            icon: SvgPicture.asset(
+              'assets/icons/plus.svg', // Path to your custom icon
+              width: 32,
+              height: 32,
+            ),
           ),
         ],
       ),
