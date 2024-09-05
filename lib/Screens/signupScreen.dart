@@ -17,8 +17,8 @@ class SignUpScreen extends StatelessWidget {
               const Text(
                 'Power Down',
                 style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
               const SizedBox(height: 50), // Add more space between Power Down and Sign up
