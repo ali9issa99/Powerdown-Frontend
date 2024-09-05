@@ -8,7 +8,11 @@ class AddRoomScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Home'),
+        title: const Text('My Home',
+        style: TextStyle(
+            fontSize: 29,
+            fontWeight: FontWeight.w600,
+        ),),
         automaticallyImplyLeading: false, // Removes the back arrow
         actions: [
           IconButton(
