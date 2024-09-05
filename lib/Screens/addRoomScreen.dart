@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AddRoomScreen extends StatelessWidget {
   const AddRoomScreen({super.key});
@@ -34,26 +35,20 @@ class AddRoomScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Action for adding rooms and devices
-        },
-        child: const Icon(Icons.add),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // Default active tab is 'Home'
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset(
+            icon: SvgPicture.asset(
               'assets/icons/home.svg',
-              width: 24, // Adjust the width/height as needed
+              width: 24,
               height: 24,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
+            icon: SvgPicture.asset(
               'assets/icons/analytics.svg',
               width: 24,
               height: 24,
@@ -61,7 +56,7 @@ class AddRoomScreen extends StatelessWidget {
             label: 'Analytics',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
+            icon: SvgPicture.asset(
               'assets/icons/achievements.svg',
               width: 24,
               height: 24,
@@ -69,7 +64,7 @@ class AddRoomScreen extends StatelessWidget {
             label: 'Achievements',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
+            icon: SvgPicture.asset(
               'assets/icons/profile.svg',
               width: 24,
               height: 24,
