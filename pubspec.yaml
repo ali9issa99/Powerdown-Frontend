@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   google_sign_in: ^5.4.0
+  flutter_svg: ^1.1.0
   
 
 dev_dependencies:
@@ -57,6 +58,7 @@ flutter:
   assets:
     - assets/tv.png
     - assets/google.png
+    
     - assets/icons/home.svg
     - assets/icons/analytics.svg
     - assets/icons/achievements.svg
