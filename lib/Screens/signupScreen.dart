@@ -65,7 +65,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
 
               // Email Label
               const Text(
@@ -93,7 +93,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
 
               // Password Label
               const Text(
