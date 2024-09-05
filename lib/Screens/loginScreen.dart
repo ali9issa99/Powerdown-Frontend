@@ -126,7 +126,7 @@ class LoginScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context,
-                          '/addRoom'); // Navigate to AddRoomScreen
+                          '/addRoomScreen.dart'); // Navigate to AddRoomScreen
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF004D40),
