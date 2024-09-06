@@ -17,6 +17,91 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
     });
   }
 
+  void _showAddRoomModal() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent, // Makes the background transparent
+      isScrollControlled: true, // To make the modal fullscreen if needed
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          builder: (context, scrollController) {
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
+              ),
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min, // Adapts to the content size
+                children: [
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Room',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  DropdownButtonFormField<String>(
+                    value: 'Living Room',
+                    items: const [
+                      DropdownMenuItem(
+                        value: 'Living Room',
+                        child: Text('Living Room'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Bedroom',
+                        child: Text('Bedroom'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Kitchen',
+                        child: Text('Kitchen'),
+                      ),
+                    ],
+                    onChanged: (value) {
+                      // Handle dropdown value change
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Handle continue button press
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF004B43), // Your desired color
+                      minimumSize: const Size.fromHeight(48), // Button height
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    child: const Text('Continue'),
+                  ),
+                  const SizedBox(height: 16),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context); // Close the modal
+                    },
+                    child: const Text('Back'),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +117,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              // Logic for the custom icon button
+              _showAddRoomModal(); // Show the modal when plus icon is pressed
             },
             icon: SvgPicture.asset(
               'assets/icons/plus.svg', // Path to your custom icon
