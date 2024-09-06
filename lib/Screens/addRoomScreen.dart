@@ -45,17 +45,17 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Spacer(flex: 3), // To provide flexible spacing from the top
-            Text(
+          children: [
+            Spacer(flex: 2), // Decrease this value to move text up
+            const Text(
               'Click on the add button to add\n"Rooms" and "Devices"',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 28,
                 color: Colors.grey,
               ),
               textAlign: TextAlign.center,
             ),
-            Spacer(flex: 2), // To provide flexible spacing from the bottom
+            Spacer(flex: 2), // Increase this value to move text up
           ],
         ),
       ),
