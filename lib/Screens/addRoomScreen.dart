@@ -18,102 +18,119 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   }
 
   void _showAddRoomModal() {
-  showModalBottomSheet(
-    context: context,
-    backgroundColor: Colors.transparent, // Makes the background transparent
-    isScrollControlled: true, // To make the modal fullscreen if needed
-    builder: (context) {
-      return DraggableScrollableSheet(
-        expand: false,
-        builder: (context, scrollController) {
-          return Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16),
-                topRight: Radius.circular(16),
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent, // Makes the background transparent
+      isScrollControlled: true, // To make the modal fullscreen if needed
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          builder: (context, scrollController) {
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
               ),
-            ),
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min, // Adapts to the content size
-              crossAxisAlignment: CrossAxisAlignment.start, // Aligns content to the left
-              children: [
-                const SizedBox(height: 25), // Adds space above the "Room" text
-                const Align(
-                  alignment: Alignment.topLeft, // Aligns text to the top-left
-                  child: Text(
-                    'Room',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w500,
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min, // Adapts to the content size
+                crossAxisAlignment:
+                    CrossAxisAlignment.start, // Aligns content to the left
+                children: [
+                  const SizedBox(
+                      height: 25), // Adds space above the "Room" text
+                  const Align(
+                    alignment: Alignment.topLeft, // Aligns text to the top-left
+                    child: Text(
+                      'Room',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 40),
-                DropdownButtonFormField<String>(
-                  value: 'Living Room',
-                  items: const [
-                    DropdownMenuItem(
+                  const SizedBox(height: 40),
+                  Container(
+                    // width: 300, // Set the width of the dropdown
+                    padding: EdgeInsets.symmetric(
+                        vertical: 15.0), // Adds vertical padding
+                    child: DropdownButtonFormField<String>(
                       value: 'Living Room',
-                      child: Text('Living Room'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'Bedroom',
-                      child: Text('Bedroom'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'Kitchen',
-                      child: Text('Kitchen'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'Guest Room',
-                      child: Text('Guest Room'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'Bathroom',
-                      child: Text('Bathroom'),
-                    ),
-                  ],
-                  onChanged: (value) {
-                    // Handle dropdown value change
-                  },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 182),
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle continue button press
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF004B43), // Your desired color
-                    minimumSize: const Size.fromHeight(48), // Button height
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'Living Room',
+                          child: Text('Living Room'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Bedroom',
+                          child: Text('Bedroom'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Kitchen',
+                          child: Text('Kitchen'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Guest Room',
+                          child: Text('Guest Room'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Bathroom',
+                          child: Text('Bathroom'),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        // Handle dropdown value change
+                      },
+                      isExpanded: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
                     ),
                   ),
-                  child: const Text('Continue'),
-                ),
-                const SizedBox(height: 16),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context); // Close the modal
-                  },
-                  child: const Text('Back'),
-                ),
-              ],
-            ),
-          );
-        },
-      );
-    },
-  );
-}
 
+                  const SizedBox(height: 100),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Handle continue button press
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          const Color(0xFF004B43), // Your desired color
+                      minimumSize: const Size.fromHeight(48), // Button height
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    child: const Text('Continue'),
+                  ),
+                  const SizedBox(height: 16),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context); // Close the modal
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          const Color.fromARGB(255, 255, 255, 255), // Your desired color
+                      minimumSize: const Size.fromHeight(48), // Button height
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    child: const Text('Back'),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
