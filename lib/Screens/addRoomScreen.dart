@@ -62,6 +62,14 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                         value: 'Kitchen',
                         child: Text('Kitchen'),
                       ),
+                      DropdownMenuItem(
+                        value: 'Guest Room',
+                        child: Text('Guest Room'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Bathroom',
+                        child: Text('Bathroom'),
+                      ),
                     ],
                     onChanged: (value) {
                       // Handle dropdown value change
