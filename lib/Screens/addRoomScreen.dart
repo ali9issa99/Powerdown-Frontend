@@ -46,7 +46,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 40),
                   DropdownButtonFormField<String>(
                     value: 'Living Room',
                     items: const [
@@ -80,7 +80,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 182),
                   ElevatedButton(
                     onPressed: () {
                       // Handle continue button press
