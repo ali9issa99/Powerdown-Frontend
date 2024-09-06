@@ -106,7 +106,12 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    child: const Text('Continue'),
+                    child: const Text(
+                      'Continue',
+                      style: TextStyle(
+                        color: Colors.white, // Set the text color to white
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextButton(
@@ -114,8 +119,8 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                       Navigator.pop(context); // Close the modal
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          const Color.fromARGB(255, 255, 255, 255), // Your desired color
+                      backgroundColor: const Color.fromARGB(
+                          255, 255, 255, 255), // Your desired color
                       minimumSize: const Size.fromHeight(48), // Button height
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
