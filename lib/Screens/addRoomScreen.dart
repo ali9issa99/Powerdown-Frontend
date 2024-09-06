@@ -39,12 +39,13 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
               mainAxisSize: MainAxisSize.min, // Adapts to the content size
               crossAxisAlignment: CrossAxisAlignment.start, // Aligns content to the left
               children: [
+                const SizedBox(height: 25), // Adds space above the "Room" text
                 const Align(
                   alignment: Alignment.topLeft, // Aligns text to the top-left
                   child: Text(
                     'Room',
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 28,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -79,7 +80,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                   },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                 ),
