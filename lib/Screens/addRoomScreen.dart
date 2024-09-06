@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:powerdown_frontend/widgets/navbar.dart'; // Import the BottomNavBar
 
 class AddRoomScreen extends StatefulWidget {
   const AddRoomScreen({super.key});
@@ -27,7 +28,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
           expand: false,
           builder: (context, scrollController) {
             return Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16),
@@ -36,14 +37,12 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
               ),
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                mainAxisSize: MainAxisSize.min, // Adapts to the content size
-                crossAxisAlignment:
-                    CrossAxisAlignment.start, // Aligns content to the left
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                      height: 25), // Adds space above the "Room" text
+                  const SizedBox(height: 25),
                   const Align(
-                    alignment: Alignment.topLeft, // Aligns text to the top-left
+                    alignment: Alignment.topLeft,
                     child: Text(
                       'Room',
                       style: TextStyle(
@@ -54,9 +53,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                   ),
                   const SizedBox(height: 40),
                   Container(
-                    // width: 300, // Set the width of the dropdown
-                    padding: EdgeInsets.symmetric(
-                        vertical: 15.0), // Adds vertical padding
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: DropdownButtonFormField<String>(
                       value: 'Living Room',
                       items: const [
@@ -81,9 +78,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                           child: Text('Bathroom'),
                         ),
                       ],
-                      onChanged: (value) {
-                        // Handle dropdown value change
-                      },
+                      onChanged: (value) {},
                       isExpanded: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -92,16 +87,14 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 100),
                   ElevatedButton(
                     onPressed: () {
                       // Handle continue button press
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          const Color(0xFF004B43), // Your desired color
-                      minimumSize: const Size.fromHeight(48), // Button height
+                      backgroundColor: const Color(0xFF004B43),
+                      minimumSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),
@@ -111,7 +104,6 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
-                         // Set the text color to white
                       ),
                     ),
                   ),
@@ -120,18 +112,10 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     onPressed: () {
                       Navigator.pop(context); // Close the modal
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(
-                          255, 255, 255, 255), // Your desired color
-                      minimumSize: const Size.fromHeight(48), // Button height
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                    child: const Text(
+                      'Back',
+                      style: TextStyle(fontSize: 18),
                     ),
-                    child: const Text('Back',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),),
                   ),
                 ],
               ),
@@ -160,7 +144,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
               _showAddRoomModal(); // Show the modal when plus icon is pressed
             },
             icon: SvgPicture.asset(
-              'assets/icons/plus.svg', // Path to your custom icon
+              'assets/icons/plus.svg',
               width: 32,
               height: 32,
             ),
@@ -170,9 +154,9 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Spacer(flex: 2), // Decrease this value to move text up
-            const Text(
+          children: const [
+            Spacer(flex: 2),
+            Text(
               'Click on the add button to add\n"Rooms" and "Devices"',
               style: TextStyle(
                 fontSize: 28,
@@ -180,60 +164,13 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
               ),
               textAlign: TextAlign.center,
             ),
-            Spacer(flex: 2), // Increase this value to move text up
+            Spacer(flex: 2),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex, // Sets the current index
-        type: BottomNavigationBarType.fixed,
-        onTap: _onItemTapped, // Handles tap events
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              _selectedIndex == 0
-                  ? 'assets/activeIcons/home.svg' // Path to the active icon
-                  : 'assets/icons/home.svg', // Path to the inactive icon
-              width: 24,
-              height: 24,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              _selectedIndex == 1
-                  ? 'assets/activeIcons/analytics.svg' // Path to the active icon
-                  : 'assets/icons/analytics.svg', // Path to the inactive icon
-              width: 24,
-              height: 24,
-            ),
-            label: 'Analytics',
-          ),
-          BottomNavigationBarItem(
-            icon: _selectedIndex == 2
-                ? Image.asset(
-                    'assets/activeIcons/achievements.png', // Path to the active PNG icon
-                    width: 24,
-                    height: 24,
-                  )
-                : SvgPicture.asset(
-                    'assets/icons/achievements.svg', // Path to the inactive SVG icon
-                    width: 24,
-                    height: 24,
-                  ),
-            label: 'Achievements',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              _selectedIndex == 3
-                  ? 'assets/activeIcons/profile.svg' // Path to the active icon
-                  : 'assets/icons/profile.svg', // Path to the inactive icon
-              width: 24,
-              height: 24,
-            ),
-            label: 'Profile',
-          ),
-        ],
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
