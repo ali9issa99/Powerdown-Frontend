@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:powerdown_frontend/widgets/navbar.dart'; // Import the BottomNavBar
+import 'package:powerdown_frontend/Screens/addDeviceScreen.dart';
 
 class AddRoomScreen extends StatefulWidget {
   const AddRoomScreen({super.key});
@@ -90,7 +91,12 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                   const SizedBox(height: 100),
                   ElevatedButton(
                     onPressed: () {
-                      // Handle continue button press
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AddDeviceScreen(),
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF004B43),
@@ -115,6 +121,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     child: const Text(
                       'Back',
                       style: TextStyle(fontSize: 18),
+                      
                     ),
                   ),
                 ],
