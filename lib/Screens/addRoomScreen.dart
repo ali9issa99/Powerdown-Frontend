@@ -103,13 +103,15 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                           const Color(0xFF004B43), // Your desired color
                       minimumSize: const Size.fromHeight(48), // Button height
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(25.0),
                       ),
                     ),
                     child: const Text(
                       'Continue',
                       style: TextStyle(
-                        color: Colors.white, // Set the text color to white
+                        color: Colors.white,
+                        fontSize: 18,
+                         // Set the text color to white
                       ),
                     ),
                   ),
@@ -126,7 +128,10 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    child: const Text('Back'),
+                    child: const Text('Back',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),),
                   ),
                 ],
               ),
