@@ -65,66 +65,46 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
         onTap: _onItemTapped, // Handles tap events
         items: [
           BottomNavigationBarItem(
-            icon: Container(
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                color: _selectedIndex == 0 ? Colors.blue : Colors.transparent, // Background color
-                borderRadius: BorderRadius.circular(12), // Rounded corners
-              ),
-              child: SvgPicture.asset(
-                'assets/icons/home.svg',
-                width: 24,
-                height: 24,
-                color: _selectedIndex == 0 ? Colors.white : Colors.grey, // Icon color
-              ),
+            icon: SvgPicture.asset(
+              _selectedIndex == 0
+                  ? 'assets/activeIcons/home.svg' // Path to the active icon
+                  : 'assets/icons/home.svg', // Path to the inactive icon
+              width: 24,
+              height: 24,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Container(
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                color: _selectedIndex == 1 ? Colors.blue : Colors.transparent, // Background color
-                borderRadius: BorderRadius.circular(12), // Rounded corners
-              ),
-              child: SvgPicture.asset(
-                'assets/icons/analytics.svg',
-                width: 24,
-                height: 24,
-                color: _selectedIndex == 1 ? Colors.white : Colors.grey, // Icon color
-              ),
+            icon: SvgPicture.asset(
+              _selectedIndex == 1
+                  ? 'assets/activeIcons/analytics.svg' // Path to the active icon
+                  : 'assets/icons/analytics.svg', // Path to the inactive icon
+              width: 24,
+              height: 24,
             ),
             label: 'Analytics',
           ),
           BottomNavigationBarItem(
-            icon: Container(
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                color: _selectedIndex == 2 ? Colors.blue : Colors.transparent, // Background color
-                borderRadius: BorderRadius.circular(12), // Rounded corners
-              ),
-              child: SvgPicture.asset(
-                'assets/icons/achievements.svg',
-                width: 24,
-                height: 24,
-                color: _selectedIndex == 2 ? Colors.white : Colors.grey, // Icon color
-              ),
-            ),
+            icon: _selectedIndex == 2
+                ? Image.asset(
+                    'assets/activeIcons/achievements.png', // Path to the active PNG icon
+                    width: 24,
+                    height: 24,
+                  )
+                : SvgPicture.asset(
+                    'assets/icons/achievements.svg', // Path to the inactive SVG icon
+                    width: 24,
+                    height: 24,
+                  ),
             label: 'Achievements',
           ),
           BottomNavigationBarItem(
-            icon: Container(
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                color: _selectedIndex == 3 ? Colors.blue : Colors.transparent, // Background color
-                borderRadius: BorderRadius.circular(12), // Rounded corners
-              ),
-              child: SvgPicture.asset(
-                'assets/icons/profile.svg',
-                width: 24,
-                height: 24,
-                color: _selectedIndex == 3 ? Colors.white : Colors.grey, // Icon color
-              ),
+            icon: SvgPicture.asset(
+              _selectedIndex == 3
+                  ? 'assets/activeIcons/profile.svg' // Path to the active icon
+                  : 'assets/icons/profile.svg', // Path to the inactive icon
+              width: 24,
+              height: 24,
             ),
             label: 'Profile',
           ),
