@@ -118,10 +118,16 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     onPressed: () {
                       Navigator.pop(context); // Close the modal
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                      minimumSize: const Size.fromHeight(48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                    ),
                     child: const Text(
                       'Back',
                       style: TextStyle(fontSize: 18),
-                      
                     ),
                   ),
                 ],
