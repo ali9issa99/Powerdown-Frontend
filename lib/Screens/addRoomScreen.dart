@@ -65,38 +65,66 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
         onTap: _onItemTapped, // Handles tap events
         items: [
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/home.svg',
-              width: 24,
-              height: 24,
-              color: _selectedIndex == 0 ? Colors.blue : Colors.grey, // Change color based on selection
+            icon: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: _selectedIndex == 0 ? Colors.blue : Colors.transparent, // Background color
+                borderRadius: BorderRadius.circular(12), // Rounded corners
+              ),
+              child: SvgPicture.asset(
+                'assets/icons/home.svg',
+                width: 24,
+                height: 24,
+                color: _selectedIndex == 0 ? Colors.white : Colors.grey, // Icon color
+              ),
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/analytics.svg',
-              width: 24,
-              height: 24,
-              color: _selectedIndex == 1 ? Colors.blue : Colors.grey, // Change color based on selection
+            icon: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: _selectedIndex == 1 ? Colors.blue : Colors.transparent, // Background color
+                borderRadius: BorderRadius.circular(12), // Rounded corners
+              ),
+              child: SvgPicture.asset(
+                'assets/icons/analytics.svg',
+                width: 24,
+                height: 24,
+                color: _selectedIndex == 1 ? Colors.white : Colors.grey, // Icon color
+              ),
             ),
             label: 'Analytics',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/achievements.svg',
-              width: 24,
-              height: 24,
-              color: _selectedIndex == 2 ? Colors.blue : Colors.grey, // Change color based on selection
+            icon: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: _selectedIndex == 2 ? Colors.blue : Colors.transparent, // Background color
+                borderRadius: BorderRadius.circular(12), // Rounded corners
+              ),
+              child: SvgPicture.asset(
+                'assets/icons/achievements.svg',
+                width: 24,
+                height: 24,
+                color: _selectedIndex == 2 ? Colors.white : Colors.grey, // Icon color
+              ),
             ),
             label: 'Achievements',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/profile.svg',
-              width: 24,
-              height: 24,
-              color: _selectedIndex == 3 ? Colors.blue : Colors.grey, // Change color based on selection
+            icon: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: _selectedIndex == 3 ? Colors.blue : Colors.transparent, // Background color
+                borderRadius: BorderRadius.circular(12), // Rounded corners
+              ),
+              child: SvgPicture.asset(
+                'assets/icons/profile.svg',
+                width: 24,
+                height: 24,
+                color: _selectedIndex == 3 ? Colors.white : Colors.grey, // Icon color
+              ),
             ),
             label: 'Profile',
           ),
