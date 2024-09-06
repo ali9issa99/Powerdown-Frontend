@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class AddRoomScreen extends StatelessWidget {
+class AddRoomScreen extends StatefulWidget {
   const AddRoomScreen({super.key});
+
+  @override
+  _AddRoomScreenState createState() => _AddRoomScreenState();
+}
+
+class _AddRoomScreenState extends State<AddRoomScreen> {
+  int _selectedIndex = 0; // Tracks the selected index
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Home',
-        style: TextStyle(
+        title: const Text(
+          'My Home',
+          style: TextStyle(
             fontSize: 29,
             fontWeight: FontWeight.w600,
-        ),),
+          ),
+        ),
         automaticallyImplyLeading: false, // Removes the back arrow
         actions: [
           IconButton(
@@ -45,14 +60,16 @@ class AddRoomScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // Default active tab is 'Home'
+        currentIndex: _selectedIndex, // Sets the current index
         type: BottomNavigationBarType.fixed,
+        onTap: _onItemTapped, // Handles tap events
         items: [
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               'assets/icons/home.svg',
               width: 24,
               height: 24,
+              color: _selectedIndex == 0 ? Colors.blue : Colors.grey, // Change color based on selection
             ),
             label: 'Home',
           ),
@@ -61,6 +78,7 @@ class AddRoomScreen extends StatelessWidget {
               'assets/icons/analytics.svg',
               width: 24,
               height: 24,
+              color: _selectedIndex == 1 ? Colors.blue : Colors.grey, // Change color based on selection
             ),
             label: 'Analytics',
           ),
@@ -69,6 +87,7 @@ class AddRoomScreen extends StatelessWidget {
               'assets/icons/achievements.svg',
               width: 24,
               height: 24,
+              color: _selectedIndex == 2 ? Colors.blue : Colors.grey, // Change color based on selection
             ),
             label: 'Achievements',
           ),
@@ -77,6 +96,7 @@ class AddRoomScreen extends StatelessWidget {
               'assets/icons/profile.svg',
               width: 24,
               height: 24,
+              color: _selectedIndex == 3 ? Colors.blue : Colors.grey, // Change color based on selection
             ),
             label: 'Profile',
           ),
