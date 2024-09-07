@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:powerdown_frontend/widgets/navbar.dart'; // Import the BottomNavBar
-import 'package:powerdown_frontend/Screens/addDeviceScreen.dart';
 
 class AddRoomScreen extends StatefulWidget {
   const AddRoomScreen({super.key});
@@ -91,12 +90,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                   const SizedBox(height: 100),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AddDeviceScreen(),
-                        ),
-                      );
+                      _showAddDeviceModal(); // Show add device modal
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF004B43),
@@ -133,6 +127,22 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                 ],
               ),
             );
+          },
+        );
+      },
+    );
+  }
+
+  void _showAddDeviceModal() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          builder: (context, scrollController) {
+            return AddDeviceModal(); // Custom modal widget for adding device
           },
         );
       },
@@ -184,6 +194,42 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
+      ),
+    );
+  }
+}
+
+// Define the AddDeviceModal widget
+class AddDeviceModal extends StatelessWidget {
+  const AddDeviceModal({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+      ),
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          SizedBox(height: 25),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              'Add Device',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          // Add device form or UI components here
+        ],
       ),
     );
   }
