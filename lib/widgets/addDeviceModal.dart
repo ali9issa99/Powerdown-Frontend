@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:powerdown_frontend/widgets/addRoomModal.dart';
 
 class AddDeviceModal extends StatelessWidget {
   const AddDeviceModal({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class AddDeviceModal extends StatelessWidget {
               const SizedBox(height: 25),
               GridView.count(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+                // physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
@@ -43,9 +44,11 @@ class AddDeviceModal extends StatelessWidget {
                   DeviceTile(deviceName: 'Smart Tv', deviceIcon: Icons.tv),
                   DeviceTile(deviceName: 'AC', deviceIcon: Icons.ac_unit),
                   DeviceTile(deviceName: 'Heater', deviceIcon: Icons.fireplace),
-                  DeviceTile(deviceName: 'Light 1', deviceIcon: Icons.lightbulb),
+                  DeviceTile(
+                      deviceName: 'Light 1', deviceIcon: Icons.lightbulb),
                   DeviceTile(deviceName: 'Fan', deviceIcon: Icons.toys),
-                  DeviceTile(deviceName: 'Light 2', deviceIcon: Icons.lightbulb),
+                  DeviceTile(
+                      deviceName: 'Light 2', deviceIcon: Icons.lightbulb),
                 ],
               ),
               const SizedBox(height: 40),
@@ -71,7 +74,16 @@ class AddDeviceModal extends StatelessWidget {
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context); // Close the modal
+                  Navigator.pop(context); // Close the current modal
+
+                  // Show the previous modal bottom sheet
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (BuildContext context) {
+                      return AddRoomModal(); // Replace with the widget of the previous modal
+                    },
+                  );
                 },
                 style: TextButton.styleFrom(
                   minimumSize: const Size.fromHeight(48),
@@ -96,7 +108,9 @@ class DeviceTile extends StatelessWidget {
   final String deviceName;
   final IconData deviceIcon;
 
-  const DeviceTile({Key? key, required this.deviceName, required this.deviceIcon}) : super(key: key);
+  const DeviceTile(
+      {Key? key, required this.deviceName, required this.deviceIcon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +136,8 @@ class DeviceTile extends StatelessWidget {
                 onPressed: () {
                   // Handle remove action
                 },
-                icon: const Icon(Icons.remove_circle_outline, color: Colors.black),
+                icon: const Icon(Icons.remove_circle_outline,
+                    color: Colors.black),
                 constraints: const BoxConstraints(),
                 padding: EdgeInsets.zero, // Remove padding for better alignment
                 iconSize: 20, // Reduce icon size for better alignment
