@@ -39,7 +39,7 @@ class AddDeviceModal extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
-                childAspectRatio: 2.5,
+                childAspectRatio: 1.5, // Adjust this to make the tiles taller
                 children: const [
                   DeviceTile(deviceName: 'Smart Tv', deviceIcon: Icons.tv),
                   DeviceTile(deviceName: 'AC', deviceIcon: Icons.ac_unit),
@@ -104,13 +104,15 @@ class AddDeviceModal extends StatelessWidget {
   }
 }
 
+
+
+
+
 class DeviceTile extends StatelessWidget {
   final String deviceName;
   final IconData deviceIcon;
 
-  const DeviceTile(
-      {Key? key, required this.deviceName, required this.deviceIcon})
-      : super(key: key);
+  const DeviceTile({Key? key, required this.deviceName, required this.deviceIcon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,38 +121,35 @@ class DeviceTile extends StatelessWidget {
         color: const Color(0xFFF5F5F5),
         borderRadius: BorderRadius.circular(8.0),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-      child: Row(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0), // Increased vertical padding
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              Icon(deviceIcon, size: 24, color: Colors.black),
+              Icon(deviceIcon, size: 28), // Adjusted icon size
               const SizedBox(width: 8),
               Text(deviceName, style: const TextStyle(fontSize: 16)),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                onPressed: () {
-                  // Handle remove action
-                },
-                icon: const Icon(Icons.remove_circle_outline,
-                    color: Colors.black),
-                constraints: const BoxConstraints(),
-                padding: EdgeInsets.zero, // Remove padding for better alignment
-                iconSize: 20, // Reduce icon size for better alignment
-              ),
-              const SizedBox(width: 4), // Add some space between buttons
-              IconButton(
-                onPressed: () {
-                  // Handle add action
-                },
-                icon: const Icon(Icons.add_circle_outline, color: Colors.black),
-                constraints: const BoxConstraints(),
-                padding: EdgeInsets.zero,
-                iconSize: 20, // Reduce icon size for better alignment
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      // Handle add action
+                    },
+                    icon: const Icon(Icons.add, color: Colors.black),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      // Handle remove action
+                    },
+                    icon: const Icon(Icons.remove, color: Colors.black),
+                  ),
+                ],
               ),
             ],
           ),
@@ -159,3 +158,4 @@ class DeviceTile extends StatelessWidget {
     );
   }
 }
+
