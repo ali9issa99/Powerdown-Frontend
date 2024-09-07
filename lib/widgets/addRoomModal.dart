@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:powerdown_frontend/widgets/addDeviceModal.dart'; // Import the AddDeviceModal
 
 class AddRoomModal extends StatelessWidget {
   const AddRoomModal({Key? key}) : super(key: key);
@@ -68,7 +69,21 @@ class AddRoomModal extends StatelessWidget {
           const SizedBox(height: 100),
           ElevatedButton(
             onPressed: () {
-              Navigator.pop(context); // Close the modal
+              Navigator.pop(context); // Close the current modal
+              // Then, open the AddDeviceModal
+              showModalBottomSheet(
+                context: context,
+                backgroundColor: Colors.transparent,
+                isScrollControlled: true,
+                builder: (context) {
+                  return DraggableScrollableSheet(
+                    expand: false,
+                    builder: (context, scrollController) {
+                      return const AddDeviceModal(); // Open the AddDeviceModal
+                    },
+                  );
+                },
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF004B43),
