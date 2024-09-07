@@ -105,6 +105,14 @@ class AddRoomModal extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context); // Close the modal
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white, // Same as before, or change as needed
+              minimumSize: const Size.fromHeight(48),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+                side: const BorderSide(color: Color.fromARGB(255, 255, 255, 255)), // Optional: border around back button
+              ),
+            ),
             child: const Text(
               'Back',
               style: TextStyle(fontSize: 18),
