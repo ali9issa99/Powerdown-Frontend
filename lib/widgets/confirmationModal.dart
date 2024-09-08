@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ConfirmationModal extends StatelessWidget {
-  const ConfirmationModal({super.key});
+  final String selectedRoom;
+
+  const ConfirmationModal({Key? key, required this.selectedRoom}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +25,13 @@ class ConfirmationModal extends StatelessWidget {
               const SizedBox(height: 40),
               const Icon(
                 Icons.task_alt_outlined,
-                color: Color.fromARGB(255, 88,146,50),
+                color: Color.fromARGB(255, 88, 146, 50),
                 size: 140,
               ),
               const SizedBox(height: 45),
-              const Text(
-                'Living Room Added!',
-                style: TextStyle(
+              Text(
+                '$selectedRoom was Added!', // Use the selected room
+                style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w600,
                 ),
@@ -37,7 +39,7 @@ class ConfirmationModal extends StatelessWidget {
               const SizedBox(height: 75),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context); // Closes the modal
+                  Navigator.pop(context); // Close the modal
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF004B43),
