@@ -3,7 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:powerdown_frontend/widgets/navbar.dart';
 import 'package:powerdown_frontend/widgets/addRoomModal.dart'; // Import AddRoomModal
 import 'package:powerdown_frontend/widgets/addDeviceModal.dart';
-import 'package:powerdown_frontend/widgets/confirmationModal.dart'; // Import AddDeviceModal
+import 'package:powerdown_frontend/widgets/confirmationModal.dart';
+import 'package:powerdown_frontend/widgets/roomCard.dart'; // Import AddDeviceModal
 
 class AddRoomScreen extends StatefulWidget {
   const AddRoomScreen({super.key});
@@ -14,6 +15,7 @@ class AddRoomScreen extends StatefulWidget {
 
 class _AddRoomScreenState extends State<AddRoomScreen> {
   int _selectedIndex = 0; // Tracks the selected index
+  List<String> _rooms = []; // List to keep track of rooms
 
   void _onItemTapped(int index) {
     setState(() {
@@ -37,39 +39,49 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
     );
   }
 
- void _showAddDeviceModal(String selectedRoom) {
-  showModalBottomSheet(
-    context: context,
-    backgroundColor: Colors.transparent,
-    isScrollControlled: true,
-    builder: (context) {
-      return DraggableScrollableSheet(
-        expand: false,
-        builder: (context, scrollController) {
-          return AddDeviceModal(selectedRoom: selectedRoom); // Pass selectedRoom
-        },
-      );
-    },
-  );
-}
+  void _showAddDeviceModal(String selectedRoom) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          builder: (context, scrollController) {
+            return AddDeviceModal(
+                selectedRoom: selectedRoom); // Pass selectedRoom
+          },
+        );
+      },
+    );
+  }
 
-// Method to show confirmation modal after adding room
-void _showConfirmationModal(String selectedRoom) {
-  showModalBottomSheet(
-    context: context,
-    backgroundColor: Colors.transparent,
-    isScrollControlled: true,
-    builder: (context) {
-      return DraggableScrollableSheet(
-        expand: false,
-        builder: (context, scrollController) {
-          return ConfirmationModal(selectedRoom: selectedRoom); // Pass selectedRoom
-        },
-      );
-    },
-  );
-}
+  // Method to show confirmation modal after adding room
+  void _showConfirmationModal(String selectedRoom) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          builder: (context, scrollController) {
+            return ConfirmationModal(
+              selectedRoom: selectedRoom,
+              onRoomAdded: _addRoom, // Pass the callback to add room
+            );
+          },
+        );
+      },
+    );
+  }
 
+  // Callback to add the room to the list
+  void _addRoom(String roomName) {
+    setState(() {
+      _rooms.add(roomName);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,23 +109,39 @@ void _showConfirmationModal(String selectedRoom) {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Spacer(flex: 2),
-            Text(
-              'Click on the add button to add\n"Rooms" and "Devices"',
-              style: TextStyle(
-                fontSize: 28,
-                color: Colors.grey,
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: _rooms.length,
+                itemBuilder: (context, index) {
+                  return RoomCard(
+                    roomName: _rooms[index],
+                    imagePath:
+                        'assets/room_images/room.png', // Provide a valid image path or a placeholder
+                    devices: [], // Assuming no devices initially
+                    onDelete: () {
+                      setState(() {
+                        _rooms.removeAt(index);
+                      });
+                    },
+                  );
+                },
               ),
-              textAlign: TextAlign.center,
             ),
-            Spacer(flex: 2),
+            if (_rooms.isEmpty) const Spacer(flex: 2),
+            if (_rooms.isEmpty)
+              const Text(
+                'Click on the add button to add\n"Rooms" and "Devices"',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: Colors.grey,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            if (_rooms.isEmpty) const Spacer(flex: 2),
           ],
         ),
       ),
-
-
-      
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
