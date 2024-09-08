@@ -37,39 +37,39 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
     );
   }
 
-  void _showAddDeviceModal() {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          builder: (context, scrollController) {
-            return const AddDeviceModal(); // Use the AddDeviceModal widget
-          },
-        );
-      },
-    );
-  }
+ void _showAddDeviceModal(String selectedRoom) {
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.transparent,
+    isScrollControlled: true,
+    builder: (context) {
+      return DraggableScrollableSheet(
+        expand: false,
+        builder: (context, scrollController) {
+          return AddDeviceModal(selectedRoom: selectedRoom); // Pass selectedRoom
+        },
+      );
+    },
+  );
+}
 
+// Method to show confirmation modal after adding room
+void _showConfirmationModal(String selectedRoom) {
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.transparent,
+    isScrollControlled: true,
+    builder: (context) {
+      return DraggableScrollableSheet(
+        expand: false,
+        builder: (context, scrollController) {
+          return ConfirmationModal(selectedRoom: selectedRoom); // Pass selectedRoom
+        },
+      );
+    },
+  );
+}
 
-   // Method to show confirmation modal after adding room
-  void _showConfirmationModal() {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          builder: (context, scrollController) {
-            return const ConfirmationModal(); // Use the ConfirmationModal widget
-          },
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
