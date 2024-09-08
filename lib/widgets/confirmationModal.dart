@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class ConfirmationModal extends StatelessWidget {
   final String selectedRoom;
+  final void Function(String) onRoomAdded; // Add callback
 
-  const ConfirmationModal({Key? key, required this.selectedRoom}) : super(key: key);
+  const ConfirmationModal({Key? key, required this.selectedRoom, required this.onRoomAdded}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,7 @@ class ConfirmationModal extends StatelessWidget {
               const SizedBox(height: 75),
               ElevatedButton(
                 onPressed: () {
+                  onRoomAdded(selectedRoom); // Add the room when "Done" is pressed
                   Navigator.pop(context); // Close the modal
                 },
                 style: ElevatedButton.styleFrom(
