@@ -5,7 +5,8 @@ import 'package:powerdown_frontend/widgets/confirmationModal.dart';
 class AddDeviceModal extends StatelessWidget {
   final String selectedRoom;
 
-  const AddDeviceModal({Key? key, required this.selectedRoom}) : super(key: key);
+  const AddDeviceModal({Key? key, required this.selectedRoom})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +47,11 @@ class AddDeviceModal extends StatelessWidget {
                   DeviceTile(deviceName: 'Smart Tv', deviceIcon: Icons.tv),
                   DeviceTile(deviceName: 'AC', deviceIcon: Icons.ac_unit),
                   DeviceTile(deviceName: 'Heater', deviceIcon: Icons.fireplace),
-                  DeviceTile(deviceName: 'Light 1', deviceIcon: Icons.lightbulb),
+                  DeviceTile(
+                      deviceName: 'Light 1', deviceIcon: Icons.lightbulb),
                   DeviceTile(deviceName: 'Fan', deviceIcon: Icons.toys),
-                  DeviceTile(deviceName: 'Light 2', deviceIcon: Icons.lightbulb),
+                  DeviceTile(
+                      deviceName: 'Light 2', deviceIcon: Icons.lightbulb),
                 ],
               ),
               const SizedBox(height: 40),
@@ -61,7 +64,14 @@ class AddDeviceModal extends StatelessWidget {
                       context: context,
                       isScrollControlled: true,
                       builder: (BuildContext context) {
-                        return ConfirmationModal(selectedRoom: selectedRoom); // Pass selectedRoom
+                        return ConfirmationModal(
+                          selectedRoom: selectedRoom, // Pass selectedRoom
+                          onRoomAdded: (roomName) {
+                            // Handle the room addition here
+                            // You can update your state or show a message, etc.
+                            print("Room added: $roomName");
+                          },
+                        );
                       },
                     );
                   });
@@ -110,7 +120,6 @@ class AddDeviceModal extends StatelessWidget {
     );
   }
 }
-
 
 class DeviceTile extends StatelessWidget {
   final String deviceName;
