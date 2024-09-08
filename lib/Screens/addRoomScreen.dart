@@ -111,6 +111,9 @@ void _showConfirmationModal(String selectedRoom) {
           ],
         ),
       ),
+
+
+      
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
