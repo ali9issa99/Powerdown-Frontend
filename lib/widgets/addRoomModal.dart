@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:powerdown_frontend/widgets/addDeviceModal.dart'; // Import the AddDeviceModal
 
-class AddRoomModal extends StatelessWidget {
+class AddRoomModal extends StatefulWidget {
   const AddRoomModal({Key? key}) : super(key: key);
+
+  @override
+  State<AddRoomModal> createState() => _AddRoomModalState();
+}
+
+class _AddRoomModalState extends State<AddRoomModal> {
+  String _selectedRoom = 'Living Room'; // Default value
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,7 @@ class AddRoomModal extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 15.0),
             child: DropdownButtonFormField<String>(
-              value: 'Living Room',
+              value: _selectedRoom,
               items: const [
                 DropdownMenuItem(
                   value: 'Living Room',
@@ -57,7 +64,11 @@ class AddRoomModal extends StatelessWidget {
                   child: Text('Bathroom'),
                 ),
               ],
-              onChanged: (value) {},
+              onChanged: (value) {
+                setState(() {
+                  _selectedRoom = value!;
+                });
+              },
               isExpanded: true,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -70,7 +81,8 @@ class AddRoomModal extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context); // Close the current modal
-              // Then, open the AddDeviceModal
+
+              // Open AddDeviceModal and pass the selected room
               showModalBottomSheet(
                 context: context,
                 backgroundColor: Colors.transparent,
@@ -79,7 +91,7 @@ class AddRoomModal extends StatelessWidget {
                   return DraggableScrollableSheet(
                     expand: false,
                     builder: (context, scrollController) {
-                      return const AddDeviceModal(); // Open the AddDeviceModal
+                      return AddDeviceModal(selectedRoom: _selectedRoom); // Pass the room
                     },
                   );
                 },
@@ -106,11 +118,11 @@ class AddRoomModal extends StatelessWidget {
               Navigator.pop(context); // Close the modal
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white, // Same as before, or change as needed
+              backgroundColor: Colors.white,
               minimumSize: const Size.fromHeight(48),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25.0),
-                side: const BorderSide(color: Color.fromARGB(255, 255, 255, 255)), // Optional: border around back button
+                side: const BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
               ),
             ),
             child: const Text(
@@ -123,3 +135,4 @@ class AddRoomModal extends StatelessWidget {
     );
   }
 }
+
