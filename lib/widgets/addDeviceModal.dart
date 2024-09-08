@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:powerdown_frontend/widgets/addRoomModal.dart';
+import 'package:powerdown_frontend/widgets/confirmationModal.dart';
 
 class AddDeviceModal extends StatelessWidget {
   const AddDeviceModal({Key? key}) : super(key: key);
@@ -54,7 +55,18 @@ class AddDeviceModal extends StatelessWidget {
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
-                  // Handle the 'Continue' button press here
+                  Navigator.pop(context);
+
+                  // Show the confirmation modal after closing the AddDeviceModal
+                  Future.delayed(Duration(milliseconds: 200), () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (BuildContext context) {
+                        return const ConfirmationModal(); // Navigate to the confirmation modal
+                      },
+                    );
+                  }); // Handle the 'Continue' button press here
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF004B43),
@@ -91,9 +103,7 @@ class AddDeviceModal extends StatelessWidget {
                 child: const Text(
                   'Back',
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Color.fromARGB(255, 0, 75, 67)
-                  ),
+                      fontSize: 18, color: Color.fromARGB(255, 0, 75, 67)),
                 ),
               ),
             ],
@@ -104,15 +114,13 @@ class AddDeviceModal extends StatelessWidget {
   }
 }
 
-
-
-
-
 class DeviceTile extends StatelessWidget {
   final String deviceName;
   final IconData deviceIcon;
 
-  const DeviceTile({Key? key, required this.deviceName, required this.deviceIcon}) : super(key: key);
+  const DeviceTile(
+      {Key? key, required this.deviceName, required this.deviceIcon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -123,14 +131,16 @@ class DeviceTile extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.5),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align content horizontally
+        mainAxisAlignment:
+            MainAxisAlignment.spaceBetween, // Align content horizontally
         children: [
           // Icon and Device Name on the Left
           Row(
             children: [
               Icon(deviceIcon, size: 28), // Icon of the device
               const SizedBox(width: 8), // Space between icon and text
-              Text(deviceName, style: const TextStyle(fontSize: 16)), // Device name
+              Text(deviceName,
+                  style: const TextStyle(fontSize: 16)), // Device name
             ],
           ),
           // Add and Remove buttons on the Right
@@ -155,4 +165,3 @@ class DeviceTile extends StatelessWidget {
     );
   }
 }
-
