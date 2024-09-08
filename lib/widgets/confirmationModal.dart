@@ -20,11 +20,11 @@ class ConfirmationModal extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: 25),
+              const SizedBox(height: 40),
               const Icon(
-                Icons.check_circle,
-                color: Colors.green,
-                size: 70,
+                Icons.task_alt_outlined,
+                color: Color.fromARGB(255, 88,146,50),
+                size: 140,
               ),
               const SizedBox(height: 20),
               const Text(
@@ -34,7 +34,7 @@ class ConfirmationModal extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 60),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context); // Closes the modal
