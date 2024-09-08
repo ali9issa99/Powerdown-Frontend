@@ -92,7 +92,7 @@ class AddDeviceModal extends StatelessWidget {
                   'Back',
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 0, 75, 67)
                   ),
                 ),
               ),
