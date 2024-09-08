@@ -26,15 +26,15 @@ class ConfirmationModal extends StatelessWidget {
                 color: Color.fromARGB(255, 88,146,50),
                 size: 140,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 45),
               const Text(
                 'Living Room Added!',
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 28,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 75),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context); // Closes the modal
