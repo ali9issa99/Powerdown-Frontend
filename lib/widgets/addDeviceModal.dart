@@ -3,7 +3,9 @@ import 'package:powerdown_frontend/widgets/addRoomModal.dart';
 import 'package:powerdown_frontend/widgets/confirmationModal.dart';
 
 class AddDeviceModal extends StatelessWidget {
-  const AddDeviceModal({Key? key}) : super(key: key);
+  final String selectedRoom;
+
+  const AddDeviceModal({Key? key, required this.selectedRoom}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +38,17 @@ class AddDeviceModal extends StatelessWidget {
               const SizedBox(height: 25),
               GridView.count(
                 shrinkWrap: true,
-                // physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
-                childAspectRatio: 1.7, // Adjust this to make the tiles taller
+                childAspectRatio: 1.7,
                 children: const [
                   DeviceTile(deviceName: 'Smart Tv', deviceIcon: Icons.tv),
                   DeviceTile(deviceName: 'AC', deviceIcon: Icons.ac_unit),
                   DeviceTile(deviceName: 'Heater', deviceIcon: Icons.fireplace),
-                  DeviceTile(
-                      deviceName: 'Light 1', deviceIcon: Icons.lightbulb),
+                  DeviceTile(deviceName: 'Light 1', deviceIcon: Icons.lightbulb),
                   DeviceTile(deviceName: 'Fan', deviceIcon: Icons.toys),
-                  DeviceTile(
-                      deviceName: 'Light 2', deviceIcon: Icons.lightbulb),
+                  DeviceTile(deviceName: 'Light 2', deviceIcon: Icons.lightbulb),
                 ],
               ),
               const SizedBox(height: 40),
@@ -57,16 +56,15 @@ class AddDeviceModal extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
 
-                  // Show the confirmation modal after closing the AddDeviceModal
                   Future.delayed(Duration(milliseconds: 200), () {
                     showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
                       builder: (BuildContext context) {
-                        return const ConfirmationModal(); // Navigate to the confirmation modal
+                        return ConfirmationModal(selectedRoom: selectedRoom); // Pass selectedRoom
                       },
                     );
-                  }); // Handle the 'Continue' button press here
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF004B43),
@@ -86,14 +84,13 @@ class AddDeviceModal extends StatelessWidget {
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context); // Close the current modal
+                  Navigator.pop(context);
 
-                  // Show the previous modal bottom sheet
                   showModalBottomSheet(
                     context: context,
                     isScrollControlled: true,
                     builder: (BuildContext context) {
-                      return AddRoomModal(); // Replace with the widget of the previous modal
+                      return const AddRoomModal();
                     },
                   );
                 },
@@ -113,6 +110,7 @@ class AddDeviceModal extends StatelessWidget {
     );
   }
 }
+
 
 class DeviceTile extends StatelessWidget {
   final String deviceName;
