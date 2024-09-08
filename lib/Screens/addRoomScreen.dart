@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:powerdown_frontend/widgets/navbar.dart';
 import 'package:powerdown_frontend/widgets/addRoomModal.dart'; // Import AddRoomModal
-import 'package:powerdown_frontend/widgets/addDeviceModal.dart'; // Import AddDeviceModal
+import 'package:powerdown_frontend/widgets/addDeviceModal.dart';
+import 'package:powerdown_frontend/widgets/confirmationModal.dart'; // Import AddDeviceModal
 
 class AddRoomScreen extends StatefulWidget {
   const AddRoomScreen({super.key});
@@ -46,6 +47,24 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
           expand: false,
           builder: (context, scrollController) {
             return const AddDeviceModal(); // Use the AddDeviceModal widget
+          },
+        );
+      },
+    );
+  }
+
+
+   // Method to show confirmation modal after adding room
+  void _showConfirmationModal() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          builder: (context, scrollController) {
+            return const ConfirmationModal(); // Use the ConfirmationModal widget
           },
         );
       },
