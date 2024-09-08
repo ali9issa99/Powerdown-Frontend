@@ -7,7 +7,7 @@ class AddDeviceModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      heightFactor: 1.3, // Increased to make it extend more upwards
+      heightFactor: 1.7, // Increased to make it extend more upwards
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -39,7 +39,7 @@ class AddDeviceModal extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
-                childAspectRatio: 1.5, // Adjust this to make the tiles taller
+                childAspectRatio: 1.7, // Adjust this to make the tiles taller
                 children: const [
                   DeviceTile(deviceName: 'Smart Tv', deviceIcon: Icons.tv),
                   DeviceTile(deviceName: 'AC', deviceIcon: Icons.ac_unit),
@@ -121,35 +121,32 @@ class DeviceTile extends StatelessWidget {
         color: const Color(0xFFF5F5F5),
         borderRadius: BorderRadius.circular(8.0),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0), // Increased vertical padding
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align content horizontally
         children: [
+          // Icon and Device Name on the Left
           Row(
             children: [
-              Icon(deviceIcon, size: 28), // Adjusted icon size
-              const SizedBox(width: 8),
-              Text(deviceName, style: const TextStyle(fontSize: 16)),
+              Icon(deviceIcon, size: 28), // Icon of the device
+              const SizedBox(width: 8), // Space between icon and text
+              Text(deviceName, style: const TextStyle(fontSize: 16)), // Device name
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          // Add and Remove buttons on the Right
+          Column(
             children: [
-              Column(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      // Handle add action
-                    },
-                    icon: const Icon(Icons.add, color: Colors.black),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      // Handle remove action
-                    },
-                    icon: const Icon(Icons.remove, color: Colors.black),
-                  ),
-                ],
+              IconButton(
+                onPressed: () {
+                  // Handle add action
+                },
+                icon: const Icon(Icons.add, color: Colors.black),
+              ),
+              IconButton(
+                onPressed: () {
+                  // Handle remove action
+                },
+                icon: const Icon(Icons.remove, color: Colors.black),
               ),
             ],
           ),
