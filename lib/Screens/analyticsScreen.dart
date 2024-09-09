@@ -78,13 +78,13 @@ void _onItemTapped(int index) {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 50),
             const Text(
               "This week's energy use is 5% lower than last week - great job conserving!",
               style: TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             // Button 1: View Detailed Report
             ElevatedButton(
               onPressed: () {
