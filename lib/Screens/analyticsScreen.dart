@@ -12,36 +12,39 @@ class AnalyticsScreen extends StatefulWidget {
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
   int _selectedIndex = 1; // Set the index to 1 for Analytics
 
-void _onItemTapped(int index) {
-  if (index != _selectedIndex) {
-    if (index == 0) {
-      Navigator.pushReplacementNamed(context, '/addRoom');  // Replacing current route with Home
-    } else if (index == 1) {
-      Navigator.pushReplacementNamed(context, '/analytics');  // Replacing current route with Analytics
-    } else if (index == 2) {
-      Navigator.pushReplacementNamed(context, '/achievements');  // Replacing current route with Achievements
-    } else if (index == 3) {
-      Navigator.pushReplacementNamed(context, '/profile');  // Replacing current route with Profile
+  void _onItemTapped(int index) {
+    if (index != _selectedIndex) {
+      if (index == 0) {
+        Navigator.pushReplacementNamed(
+            context, '/addRoom'); // Replacing current route with Home
+      } else if (index == 1) {
+        Navigator.pushReplacementNamed(
+            context, '/analytics'); // Replacing current route with Analytics
+      } else if (index == 2) {
+        Navigator.pushReplacementNamed(context,
+            '/achievements'); // Replacing current route with Achievements
+      } else if (index == 3) {
+        Navigator.pushReplacementNamed(
+            context, '/profile'); // Replacing current route with Profile
+      }
+
+      setState(() {
+        _selectedIndex = index;
+      });
     }
-
-    setState(() {
-      _selectedIndex = index;
-    });
   }
-}
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Consumption Analysis',
-         style: TextStyle(
+        title: const Text(
+          'Consumption Analysis',
+          style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w600,
           ),
-          ),
+        ),
         automaticallyImplyLeading: false, // This removes the back button
       ),
       body: Padding(
@@ -96,15 +99,19 @@ void _onItemTapped(int index) {
                 );
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 100, vertical: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(25),
                 ),
-                backgroundColor: Colors.teal,
+                backgroundColor: const Color(0xFF004D40),
               ),
               child: const Text(
                 'View Detailed Report',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 20),
@@ -119,15 +126,19 @@ void _onItemTapped(int index) {
                 );
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 120, vertical: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(25),
                 ),
-                backgroundColor: Colors.teal,
+                backgroundColor: const Color(0xFF004D40),
               ),
               child: const Text(
                 'AI Suggestions',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ],
