@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:powerdown_frontend/widgets/navbar.dart'; // Ensure you import your BottomNavBar
 
 class OverviewScreen extends StatelessWidget {
+  final int selectedIndex; // Add selectedIndex to the constructor
+
+  const OverviewScreen({Key? key, required this.selectedIndex}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,14 +101,11 @@ class OverviewScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1, // Set the index of the Analytics tab
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.analytics), label: 'Analytics'),
-          BottomNavigationBarItem(icon: Icon(Icons.emoji_events), label: 'Achievements'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: selectedIndex, // Pass selectedIndex
+        onItemTapped: (index) {
+          Navigator.pushReplacementNamed(context, '/analytics'); // Handle bottom nav item tap
+        },
       ),
     );
   }
