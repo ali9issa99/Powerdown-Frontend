@@ -10,6 +10,7 @@ class AiSuggestionsScreen extends StatefulWidget {
 
 class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
   int _selectedIndex = 1; // Keep Analytics active
+  double _containerHeight = 300.0; // Variable to control box height
 
   void _onItemTapped(int index) {
     if (index != _selectedIndex) {
@@ -52,7 +53,13 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        automaticallyImplyLeading: false, // Show the back button
+        automaticallyImplyLeading: false, // Disable default back button
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black), // Custom back icon
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to the previous screen
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -60,6 +67,7 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
+              height: _containerHeight, // Control height dynamically
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: const Color(0xFFE0F7FA), // Light green background
@@ -80,6 +88,22 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
                         ))
                     .toList(),
               ),
+            ),
+            const SizedBox(height: 20),
+            // Slider to control the height of the AI suggestions box
+            const Text(
+              "Adjust AI Suggestions Box Height:",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+            Slider(
+              min: 100.0,
+              max: 600.0,
+              value: _containerHeight,
+              onChanged: (double value) {
+                setState(() {
+                  _containerHeight = value;
+                });
+              },
             ),
           ],
         ),
