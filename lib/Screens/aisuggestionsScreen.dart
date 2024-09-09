@@ -10,7 +10,7 @@ class AiSuggestionsScreen extends StatefulWidget {
 
 class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
   int _selectedIndex = 1; // Keep Analytics active
-  double _containerHeight = 300.0; // Variable to control box height
+  double _containerHeight = 570.0; // Fixed height for the suggestions box
 
   void _onItemTapped(int index) {
     if (index != _selectedIndex) {
@@ -40,6 +40,9 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
     "This is an AI suggestion in order to lower energy consumption.",
     "This is an AI suggestion in order to lower energy consumption.",
     "This is an AI suggestion in order to lower energy consumption.",
+    "This is an AI suggestion in order to lower energy consumption.",
+    "This is an AI suggestion in order to lower energy consumption.",
+    
   ];
 
   @override
@@ -67,7 +70,7 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: _containerHeight, // Control height dynamically
+              height: _containerHeight, // Fixed height controlled in code
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: const Color(0xFFE0F7FA), // Light green background
@@ -81,29 +84,13 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
                           child: Text(
                             "• $suggestion",
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 18, // Increased text size
                               color: Colors.black,
                             ),
                           ),
                         ))
                     .toList(),
               ),
-            ),
-            const SizedBox(height: 20),
-            // Slider to control the height of the AI suggestions box
-            const Text(
-              "Adjust AI Suggestions Box Height:",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            Slider(
-              min: 100.0,
-              max: 600.0,
-              value: _containerHeight,
-              onChanged: (double value) {
-                setState(() {
-                  _containerHeight = value;
-                });
-              },
             ),
           ],
         ),
