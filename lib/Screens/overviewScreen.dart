@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class EnergyUsageOverviewScreen extends StatelessWidget {
+class OverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
