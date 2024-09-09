@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart'; // For the graph/chart
 import 'package:powerdown_frontend/widgets/navbar.dart'; // Import your BottomNavBar widget
-import 'overviewScreen.dart'; // Adjust the path according to your project structure
+import 'overviewScreen.dart'; // Import the OverviewScreen
+// import 'aiSuggestionsScreen.dart'; // Import the AiSuggestionsScreen
 
 class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({Key? key}) : super(key: key);
@@ -16,17 +17,13 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
   void _onItemTapped(int index) {
     if (index != _selectedIndex) {
       if (index == 0) {
-        Navigator.pushReplacementNamed(
-            context, '/addRoom'); // Replacing current route with Home
+        Navigator.pushReplacementNamed(context, '/addRoom'); // Replacing current route with Home
       } else if (index == 1) {
-        Navigator.pushReplacementNamed(
-            context, '/analytics'); // Replacing current route with Analytics
+        Navigator.pushReplacementNamed(context, '/analytics'); // Replacing current route with Analytics
       } else if (index == 2) {
-        Navigator.pushReplacementNamed(context,
-            '/achievements'); // Replacing current route with Achievements
+        Navigator.pushReplacementNamed(context, '/achievements'); // Replacing current route with Achievements
       } else if (index == 3) {
-        Navigator.pushReplacementNamed(
-            context, '/profile'); // Replacing current route with Profile
+        Navigator.pushReplacementNamed(context, '/profile'); // Replacing current route with Profile
       }
 
       setState(() {
@@ -89,15 +86,12 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 50),
-            // Button 1: View Detailed Report
-            // Updated 'View Detailed Report' Button
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        OverviewScreen(), // Navigate to your overviewScreen.dart
+                    builder: (context) => OverviewScreen(selectedIndex: _selectedIndex), // Pass selectedIndex
                   ),
                 );
               },
@@ -117,17 +111,15 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-
             const SizedBox(height: 20),
-            // Button 2: AI Suggestions
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AiSuggestionsScreen(),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => aiSuggestionsScreen(),
+                //   ),
+                // );
               },
               style: ElevatedButton.styleFrom(
                 padding:
@@ -148,40 +140,9 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
           ],
         ),
       ),
-      // Use your custom BottomNavBar
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped, // Handle navigation on tap
-      ),
-    );
-  }
-}
-
-// Placeholder for DetailedReportScreen
-class DetailedReportScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Detailed Report'),
-      ),
-      body: const Center(
-        child: Text('Detailed Report Page'),
-      ),
-    );
-  }
-}
-
-// Placeholder for AiSuggestionsScreen
-class AiSuggestionsScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('AI Suggestions'),
-      ),
-      body: const Center(
-        child: Text('AI Suggestions Page'),
       ),
     );
   }
