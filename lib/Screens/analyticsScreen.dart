@@ -1,8 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart'; // For the graph/chart
+import 'package:powerdown_frontend/widgets/navbar.dart'; // Import your BottomNavBar widget
 
-class AnalyticsScreen extends StatelessWidget {
+class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({Key? key}) : super(key: key);
+
+  @override
+  _AnalyticsScreenState createState() => _AnalyticsScreenState();
+}
+
+class _AnalyticsScreenState extends State<AnalyticsScreen> {
+  int _selectedIndex = 1; // Set the index to 1 for Analytics
+
+void _onItemTapped(int index) {
+  if (index != _selectedIndex) {
+    if (index == 0) {
+      Navigator.pushNamed(context, '/home');
+    } else if (index == 1) {
+      Navigator.pushNamed(context, '/analytics'); // You can add this navigation route if required.
+    } else if (index == 2) {
+      Navigator.pushNamed(context, '/achievements');
+    } else if (index == 3) {
+      Navigator.pushNamed(context, '/profile');
+    }
+
+    // After navigating, update the selected index
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +70,7 @@ class AnalyticsScreen extends StatelessWidget {
                         FlSpot(6, 40),
                       ],
                       isCurved: true,
-                      colors: [Colors.blue],
+                      // colors: [Colors.blue],
                       barWidth: 3,
                       isStrokeCapRound: true,
                       dotData: FlDotData(show: false),
@@ -105,17 +134,10 @@ class AnalyticsScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.analytics), label: 'Analytics'),
-          BottomNavigationBarItem(icon: Icon(Icons.emoji_events), label: 'Achievements'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        currentIndex: 1, // Index for the Analytics page
-        onTap: (index) {
-          // Handle navigation based on the selected icon
-        },
+      // Use your custom BottomNavBar
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped, // Handle navigation on tap
       ),
     );
   }
