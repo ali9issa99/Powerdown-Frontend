@@ -58,18 +58,16 @@ class AddDeviceModal extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
-
                   Future.delayed(Duration(milliseconds: 200), () {
                     showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
                       builder: (BuildContext context) {
                         return ConfirmationModal(
-                          selectedRoom: selectedRoom, // Pass selectedRoom
+                          selectedRoom: selectedRoom,
                           onRoomAdded: (roomName) {
-                            // Handle the room addition here
-                            // You can update your state or show a message, etc.
-                            print("Room added: $roomName");
+                            // Perform any action after adding room
+                            // This should be handled in the parent widget
                           },
                         );
                       },
