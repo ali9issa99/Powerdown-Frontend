@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:powerdown_frontend/Screens/welcomeScreen.dart'; 
 import 'package:powerdown_frontend/Screens/loginScreen.dart'; 
 import 'package:powerdown_frontend/Screens/signupScreen.dart'; 
-import 'package:powerdown_frontend/Screens/addRoomScreen.dart'; 
+import 'package:powerdown_frontend/Screens/addRoomScreen.dart';
+import 'package:powerdown_frontend/Screens/analyticsScreen.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(), 
         '/signup': (context) => const SignUpScreen(), 
         '/addRoom': (context) => const AddRoomScreen(),
+        '/analytics': (context) => AnalyticsScreen(),
       },
     );
   }
