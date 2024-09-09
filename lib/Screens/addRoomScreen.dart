@@ -68,7 +68,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
           builder: (context, scrollController) {
             return ConfirmationModal(
               selectedRoom: selectedRoom,
-              onRoomAdded: _addRoom, // Pass the callback to add room
+              onRoomAdded: _addRoom, // Make sure this is passed correctly
             );
           },
         );
