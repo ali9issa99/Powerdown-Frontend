@@ -17,11 +17,24 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   int _selectedIndex = 0; // Tracks the selected index
   List<String> _rooms = []; // List to keep track of rooms
 
-  void _onItemTapped(int index) {
+ void _onItemTapped(int index) {
+  if (index != _selectedIndex) {
+    if (index == 0) {
+      Navigator.pushNamed(context, '/home');
+    } else if (index == 1) {
+      Navigator.pushNamed(context, '/analytics');
+    } else if (index == 2) {
+      Navigator.pushNamed(context, '/achievements');
+    } else if (index == 3) {
+      Navigator.pushNamed(context, '/profile');
+    }
+
     setState(() {
-      _selectedIndex = index;
+      _selectedIndex = index;  // Update the index after navigation
     });
   }
+}
+
 
   void _showAddRoomModal() {
     showModalBottomSheet(
