@@ -36,13 +36,13 @@ void _onItemTapped(int index) {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Consumption Analysis'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        title: const Text('Consumption Analysis',
+         style: TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.w600,
+          ),
+          ),
+        automaticallyImplyLeading: false, // This removes the back button
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
