@@ -20,7 +20,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
  void _onItemTapped(int index) {
   if (index != _selectedIndex) {
     if (index == 0) {
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamed(context, '/addRoom');
     } else if (index == 1) {
       Navigator.pushNamed(context, '/analytics');
     } else if (index == 2) {
