@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart'; // For the graph/chart
+import 'package:powerdown_frontend/Screens/aisuggestionsScreen.dart';
 import 'package:powerdown_frontend/widgets/navbar.dart'; // Import your BottomNavBar widget
 import 'overviewScreen.dart'; // Import the OverviewScreen
 // import 'aiSuggestionsScreen.dart'; // Import the AiSuggestionsScreen
@@ -114,12 +115,12 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => aiSuggestionsScreen(),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AiSuggestionsScreen(),
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 padding:
