@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart'; // For the graph/chart
 import 'package:powerdown_frontend/widgets/navbar.dart'; // Import your BottomNavBar widget
+import 'overviewScreen.dart'; // Adjust the path according to your project structure
 
 class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({Key? key}) : super(key: key);
@@ -89,12 +90,14 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
             ),
             const SizedBox(height: 50),
             // Button 1: View Detailed Report
+            // Updated 'View Detailed Report' Button
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DetailedReportScreen(),
+                    builder: (context) =>
+                        OverviewScreen(), // Navigate to your overviewScreen.dart
                   ),
                 );
               },
@@ -114,6 +117,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                     fontWeight: FontWeight.bold),
               ),
             ),
+
             const SizedBox(height: 20),
             // Button 2: AI Suggestions
             ElevatedButton(
