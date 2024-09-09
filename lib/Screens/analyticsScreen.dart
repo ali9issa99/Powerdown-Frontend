@@ -15,16 +15,15 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
 void _onItemTapped(int index) {
   if (index != _selectedIndex) {
     if (index == 0) {
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/addRoom');  // Replacing current route with Home
     } else if (index == 1) {
-      Navigator.pushNamed(context, '/analytics'); // You can add this navigation route if required.
+      Navigator.pushReplacementNamed(context, '/analytics');  // Replacing current route with Analytics
     } else if (index == 2) {
-      Navigator.pushNamed(context, '/achievements');
+      Navigator.pushReplacementNamed(context, '/achievements');  // Replacing current route with Achievements
     } else if (index == 3) {
-      Navigator.pushNamed(context, '/profile');
+      Navigator.pushReplacementNamed(context, '/profile');  // Replacing current route with Profile
     }
 
-    // After navigating, update the selected index
     setState(() {
       _selectedIndex = index;
     });
