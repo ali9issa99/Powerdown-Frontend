@@ -65,10 +65,16 @@ flutter:
     - assets/icons/achievements.svg
     - assets/icons/profile.svg
     - assets/icons/plus.svg
+
     - assets/activeIcons/home.svg
     - assets/activeIcons/analytics.svg
     - assets/activeIcons/achievements.png
     - assets/activeIcons/profile.svg
+
+    - assets/badges/medal.png
+    - assets/badges/trophy.png
+    - assets/badges/emerald.png
+    - assets/badges/diamond.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
