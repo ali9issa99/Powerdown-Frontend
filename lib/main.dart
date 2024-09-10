@@ -5,6 +5,7 @@ import 'package:powerdown_frontend/Screens/signupScreen.dart';
 import 'package:powerdown_frontend/Screens/addRoomScreen.dart';
 import 'package:powerdown_frontend/Screens/analyticsScreen.dart'; 
 import 'package:powerdown_frontend/Screens/achievementsScreen.dart';
+import 'package:powerdown_frontend/Screens/profileScreen.dart';
 
 
 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/addRoom': (context) => const AddRoomScreen(),
         '/analytics': (context) => AnalyticsScreen(),
         '/achievements': (context) => AchievementsScreen(),
+        '/profile': (context) => ProfileScreen(),
       },
     );
   }
