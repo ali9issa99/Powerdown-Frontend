@@ -1,7 +1,7 @@
-// lib/screens/profile_screen.dart
 import 'package:flutter/material.dart';
 import 'package:powerdown_frontend/widgets/navbar.dart'; // Import your BottomNavBar
-import 'package:powerdown_frontend/Screens/profileDetails.dart'; // Import the ProfileDetails screen
+import 'package:powerdown_frontend/screens/profileDetails.dart'; // Import the ProfileDetails screen
+import 'package:powerdown_frontend/screens/notificationScreen.dart'; // Make sure you have the correct import for NotificationScreen
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -123,7 +123,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 trailing: const Icon(Icons.arrow_forward_ios),
                 onTap: () {
-                  // Handle navigation to Notifications screen
+                  // Navigate to NotificationScreen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const NotificationsScreen()),
+                  );
                 },
               ),
             ),
