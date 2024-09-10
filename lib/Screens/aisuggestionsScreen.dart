@@ -73,7 +73,7 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
               height: _containerHeight, // Fixed height controlled in code
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: const Color(0xFFE0F7FA), // Light green background
+                color: const Color.fromARGB(255,245,253,239), // Light green background
                 borderRadius: BorderRadius.circular(15.0),
               ),
               child: Column(
