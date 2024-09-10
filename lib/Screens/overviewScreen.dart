@@ -35,15 +35,15 @@ class OverviewScreen extends StatelessWidget {
             Text(
               'Current Energy Usage',
               style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[600],
+                fontSize: 24,
+                color: Colors.black,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Text(
               '2.1 kW',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 28,
                 color: Colors.green,
                 fontWeight: FontWeight.bold,
               ),
@@ -52,8 +52,8 @@ class OverviewScreen extends StatelessWidget {
             Text(
               'Get an overview of your smart home\'s data to optimize your energy savings.',
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
+                fontSize: 18,
+                color: const Color.fromARGB(255, 0, 0, 0),
               ),
             ),
             SizedBox(height: 16),
@@ -64,11 +64,11 @@ class OverviewScreen extends StatelessWidget {
                 _buildIconText(Icons.attach_money, '\$5.20', 'Estimated Cost'),
               ],
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 35),
             Text(
               'Energy Consumption Tracker',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -83,24 +83,24 @@ class OverviewScreen extends StatelessWidget {
                       Text(
                         '• Monthly energy usage\n  165 kWh.',
                         style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[600],
+                          fontSize: 16,
+                          color: Colors.black,
                         ),
                       ),
                       SizedBox(height: 8),
                       Text(
                         '• Monthly goal reduce\n  usage to 300 kWh.',
                         style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[600],
+                          fontSize: 16,
+                          color: Colors.black,
                         ),
                       ),
                       SizedBox(height: 8),
                       Text(
                         '• Progress 45% achieved.',
                         style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[600],
+                          fontSize: 16,
+                          color: Colors.black,
                         ),
                       ),
                     ],
