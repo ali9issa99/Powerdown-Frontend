@@ -37,6 +37,31 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
     }
   }
 
+  // Extract common text field style
+  InputDecoration _buildTextFieldDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      filled: true,
+      fillColor: Colors.grey[200],
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide: BorderSide.none,
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+    );
+  }
+
+  // Extract common button style
+  ButtonStyle _buildButtonStyle() {
+    return ElevatedButton.styleFrom(
+      backgroundColor: const Color(0xFF004D40), // Button color
+      padding: const EdgeInsets.symmetric(horizontal: 155, vertical: 16), // Match padding
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25.0), // Match border radius
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,56 +79,41 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
             fontSize: 26,
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start, // Align items to the top
           children: [
+            const SizedBox(height: 20), // Space at the top
             TextFormField(
               initialValue: 'john', // Initial value for Name field
-              decoration: InputDecoration(
-                labelText: 'Name',
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-              ),
+              decoration: _buildTextFieldDecoration('Name'), // Reuse the style
+              style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20), // Space between fields
             TextFormField(
               initialValue: 'doe', // Initial value for Email field
-              decoration: InputDecoration(
-                labelText: 'E-mail',
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-              ),
+              decoration: _buildTextFieldDecoration('E-mail'), // Reuse the style
+              style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: () {
-                // Handle submit logic here
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF0F4C5C), // Color similar to the one in the image
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              child: Text(
-                'SUBMIT',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+            const SizedBox(height: 40),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle submit logic here
+                },
+                style: _buildButtonStyle(), // Reuse the button style
+                child: const Text(
+                  'SUBMIT',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
