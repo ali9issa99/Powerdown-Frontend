@@ -10,8 +10,9 @@ class OverviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Energy Usage Overview',
-        style: TextStyle(
+        title: Text(
+          'Energy Usage Overview',
+          style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w600,
           ),
@@ -121,25 +122,27 @@ class OverviewScreen extends StatelessWidget {
     );
   }
 
+  // Customizable Icon-Text widget
   Widget _buildIconText(IconData icon, String value, String label) {
     return Row(
       children: [
-        Icon(icon, size: 32, color: Colors.grey[600]),
-        SizedBox(width: 8),
+        Icon(icon, size: 48, color: Colors.grey), // Increased icon size and color
+        SizedBox(width: 12), // Increased spacing
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               value,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 20, // Increased value text size
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
             Text(
               label,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 16, // Increased label text size
                 color: Colors.grey[600],
               ),
             ),
@@ -149,24 +152,26 @@ class OverviewScreen extends StatelessWidget {
     );
   }
 
+  // Customizable Circular Progress Indicator
   Widget _buildCircularProgress(double progress) {
     return Container(
-      width: 100,
-      height: 100,
+      width: 120, // Increased circular progress size
+      height: 120,
       child: Stack(
         alignment: Alignment.center,
         children: [
           CircularProgressIndicator(
             value: progress,
-            strokeWidth: 8,
+            strokeWidth: 12, // Thicker stroke width
             backgroundColor: Colors.grey[300],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.green), // Progress color
           ),
           Text(
             '${(progress * 100).toInt()}%',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 18, // Increased percentage text size
               fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
         ],
