@@ -61,6 +61,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           children: [
             Card(
               elevation: 1,
+              color: Colors.grey[200],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
