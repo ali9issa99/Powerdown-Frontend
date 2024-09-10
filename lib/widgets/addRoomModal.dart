@@ -40,8 +40,10 @@ class _AddRoomModalState extends State<AddRoomModal> {
           const SizedBox(height: 40),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 15.0),
+            color: Colors.white,
             child: DropdownButtonFormField<String>(
               value: _selectedRoom,
+              dropdownColor: Colors.white,
               items: const [
                 DropdownMenuItem(
                   value: 'Living Room',
