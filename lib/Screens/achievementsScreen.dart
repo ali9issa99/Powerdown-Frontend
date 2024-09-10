@@ -23,28 +23,28 @@ class AchievementsScreen extends StatelessWidget {
               'Great start! Your home is already becoming more energy efficient!',
               '25%',
               0.25,
-              'assets/images/achievement1.png', // First image path
+              'assets/badges/medal.png', // First image path
             ),
             SizedBox(height: 16),
             _buildAchievementCard(
               'Halfway there! Your energy-saving efforts are making a big impact!',
               '50%',
               0.50,
-              'assets/images/achievement2.png', // Second image path
+              'assets/badges/trophy.png', // Second image path
             ),
             SizedBox(height: 16),
             _buildAchievementCard(
               'Almost at the finish line! Your home is now a model of efficiency!',
               '75%',
               0.75,
-              'assets/images/achievement3.png', // Third image path
+              'assets/badges/emerald.png', // Third image path
             ),
             SizedBox(height: 16),
             _buildAchievementCard(
-              'Amazing work! You’ve mastered energy-saving and maximized your home\'s efficiency!',
+              "Amazing work! You've mastered energy-saving and maximized your home\'s efficiency!",
               '100%',
               1.0,
-              'assets/images/achievement4.png', // Fourth image path
+              'assets/badges/diamond.png', // Fourth image path
             ),
           ],
         ),
