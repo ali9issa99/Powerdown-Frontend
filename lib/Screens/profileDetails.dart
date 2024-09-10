@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'navbar.dart'; // Import your BottomNavBar
+import 'package:powerdown_frontend/widgets/navbar.dart';
 
 class ProfileDetailsScreen extends StatefulWidget {
   const ProfileDetailsScreen({super.key});
@@ -40,6 +40,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -50,9 +51,10 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
         title: Text(
           'Profile Details',
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+            fontSize: 26,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
+            
           ),
         ),
       ),
