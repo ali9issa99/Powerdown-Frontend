@@ -7,7 +7,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // Set background color to white
       appBar: AppBar(
         title: const Text(
           'Profile',
@@ -26,14 +25,11 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            // User Avatar
             const CircleAvatar(
               radius: 50,
-              backgroundImage:
-                  AssetImage('assets/profile.png'), // Use your avatar image
+              backgroundImage: AssetImage('assets/profile.png'),
             ),
             const SizedBox(height: 20),
-            // User Name
             const Text(
               'John Doe',
               style: TextStyle(
@@ -43,7 +39,6 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            // User Email
             const Text(
               'johndoe@email.com',
               style: TextStyle(
@@ -52,43 +47,66 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40),
-            // Profile Options
-            ListTile(
-              leading: const Icon(Icons.person, color: Colors.black),
-              title: const Text('Profile details'),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                // Handle navigation to Profile Details screen
-              },
-              tileColor: Colors.grey[200], // Background color of the list item
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+            Container(
+              height: 60, // Adjust height of the ListTile
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: ListTile(
+                leading: const Icon(Icons.person, color: Colors.black),
+                title: const Text(
+                  'Profile details',
+                  style: TextStyle(
+                    fontSize: 18, // Adjust text size here
+                  ),
+                ),
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  // Handle navigation to Profile Details screen
+                },
               ),
             ),
-            const SizedBox(height: 30),
-            ListTile(
-              leading: const Icon(Icons.notifications, color: Colors.black),
-              title: const Text('Push Notifications'),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                // Handle navigation to Notifications screen
-              },
-              tileColor: Colors.grey[200], // Background color of the list item
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+            const SizedBox(height: 25),
+            Container(
+              height: 60, // Adjust height of the ListTile
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: ListTile(
+                leading: const Icon(Icons.notifications, color: Colors.black),
+                title: const Text(
+                  'Push Notifications',
+                  style: TextStyle(
+                    fontSize: 18, // Adjust text size here
+                  ),
+                ),
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  // Handle navigation to Notifications screen
+                },
               ),
             ),
-            const SizedBox(height: 30),
-            ListTile(
-              leading: const Icon(Icons.logout, color: Colors.black),
-              title: const Text('Logout'),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                // Handle logout functionality
-              },
-              tileColor: Colors.grey[200], // Background color of the list item
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+            const SizedBox(height: 25),
+            Container(
+              height: 60, // Adjust height of the ListTile
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: ListTile(
+                leading: const Icon(Icons.logout, color: Colors.black),
+                title: const Text(
+                  'Logout',
+                  style: TextStyle(
+                    fontSize: 18, // Adjust text size here
+                  ),
+                ),
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  // Handle logout functionality
+                },
               ),
             ),
           ],
