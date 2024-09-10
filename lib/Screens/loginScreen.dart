@@ -117,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                         );
                       },
                       child: const Text(
-                        'Sign-up',
+                        'Sign-Up',
                         style:
                             TextStyle(color: Color.fromARGB(255, 0, 105, 190)),
                       ),
