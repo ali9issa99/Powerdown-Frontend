@@ -48,14 +48,17 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           'AI Suggestions',
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w600,
+            backgroundColor: Colors.white,
           ),
         ),
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false, // Disable default back button
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black), // Custom back icon
