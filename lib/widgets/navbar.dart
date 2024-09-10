@@ -17,6 +17,7 @@ class BottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: selectedIndex, // Sets the current index
       type: BottomNavigationBarType.fixed,
+      backgroundColor: Colors.white,
       onTap: onItemTapped, // Handles tap events
       items: [
         BottomNavigationBarItem(
