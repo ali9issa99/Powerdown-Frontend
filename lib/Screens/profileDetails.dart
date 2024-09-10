@@ -37,10 +37,18 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
     }
   }
 
-  // Extract common text field style
+  // Reuse label style from LoginScreen
+  TextStyle _labelStyle() {
+    return const TextStyle(
+      fontSize: 16,
+      color: Colors.black,
+    );
+  }
+
+  // Reuse TextField style from LoginScreen
   InputDecoration _buildTextFieldDecoration(String label) {
     return InputDecoration(
-      labelText: label,
+      hintText: label, // Match hintText as label
       filled: true,
       fillColor: Colors.grey[200],
       border: OutlineInputBorder(
@@ -51,7 +59,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
     );
   }
 
-  // Extract common button style
+  // Reuse button style from LoginScreen
   ButtonStyle _buildButtonStyle() {
     return ElevatedButton.styleFrom(
       backgroundColor: const Color(0xFF004D40), // Button color
@@ -73,7 +81,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
           icon: Icon(Icons.arrow_back_ios_new, color: Colors.black), // Back arrow like the image
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
+        title: const Text(
           'Profile Details',
           style: TextStyle(
             fontSize: 26,
@@ -89,16 +97,36 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
           mainAxisAlignment: MainAxisAlignment.start, // Align items to the top
           children: [
             const SizedBox(height: 20), // Space at the top
-            TextFormField(
-              initialValue: 'john', // Initial value for Name field
-              decoration: _buildTextFieldDecoration('Name'), // Reuse the style
-              style: TextStyle(fontSize: 16),
+            const Text(
+              'Name',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black, // Match label style from LoginScreen
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 60, // Match TextField height from LoginScreen
+              width: double.infinity, // Full width
+              child: TextField(
+                decoration: _buildTextFieldDecoration('John Doe'), // Match decoration
+              ),
             ),
             const SizedBox(height: 20), // Space between fields
-            TextFormField(
-              initialValue: 'doe', // Initial value for Email field
-              decoration: _buildTextFieldDecoration('E-mail'), // Reuse the style
-              style: TextStyle(fontSize: 16),
+            const Text(
+              'E-mail',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black, // Match label style from LoginScreen
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 60, // Match TextField height from LoginScreen
+              width: double.infinity, // Full width
+              child: TextField(
+                decoration: _buildTextFieldDecoration('johndoe@mail.com',), // Match decoration
+              ),
             ),
             const SizedBox(height: 40),
             Center(
