@@ -99,14 +99,17 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           'My Home',
           style: TextStyle(
             fontSize: 29,
             fontWeight: FontWeight.w600,
+            backgroundColor: Colors.white,
           ),
         ),
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false, // Removes the back arrow
         actions: [
           IconButton(
