@@ -59,6 +59,7 @@ flutter:
   assets:
     - assets/tv.png
     - assets/google.png
+    - assets/profile.png
     
     - assets/icons/home.svg
     - assets/icons/analytics.svg
