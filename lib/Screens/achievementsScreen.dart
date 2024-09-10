@@ -8,7 +8,10 @@ class AchievementsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Achievements'),
+        title: Text('Achievements',style: TextStyle(
+          fontSize: 29,
+          fontWeight: FontWeight.w600,
+        ),),
         // centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
