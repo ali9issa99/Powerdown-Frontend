@@ -43,8 +43,10 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w600,
+            backgroundColor: Colors.white,
           ),
         ),
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false, // This removes the back button
       ),
       body: Padding(
