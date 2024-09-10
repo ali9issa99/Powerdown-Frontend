@@ -4,6 +4,9 @@ import 'package:powerdown_frontend/Screens/loginScreen.dart';
 import 'package:powerdown_frontend/Screens/signupScreen.dart'; 
 import 'package:powerdown_frontend/Screens/addRoomScreen.dart';
 import 'package:powerdown_frontend/Screens/analyticsScreen.dart'; 
+import 'package:powerdown_frontend/Screens/achievementsScreen.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const SignUpScreen(), 
         '/addRoom': (context) => const AddRoomScreen(),
         '/analytics': (context) => AnalyticsScreen(),
+        '/achievements': (context) => AchievementsScreen(),
       },
     );
   }
