@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             ListTile(
               leading: const Icon(Icons.notifications, color: Colors.black),
               title: const Text('Push Notifications'),
@@ -78,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.black),
               title: const Text('Logout'),
