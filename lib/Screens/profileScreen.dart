@@ -1,7 +1,42 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/widgets.dart';
+import 'package:powerdown_frontend/widgets/navbar.dart'; // Import your BottomNavBar
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  int selectedIndex = 3; // Set the initial index to Profile (Index 3)
+
+  void onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+
+    // Add navigation logic for different screens
+    switch (index) {
+      case 0:
+        // Navigate to Home Screen
+        Navigator.pushReplacementNamed(context, '/home');
+        break;
+      case 1:
+        // Navigate to Analytics Screen
+        Navigator.pushReplacementNamed(context, '/analytics');
+        break;
+      case 2:
+        // Navigate to Achievements Screen
+        Navigator.pushReplacementNamed(context, '/achievements');
+        break;
+      case 3:
+        // Already on Profile Screen, no action needed
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +146,11 @@ class ProfileScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      // Add BottomNavBar in the bottomNavigationBar property
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: selectedIndex,
+        onItemTapped: onItemTapped,
       ),
     );
   }
