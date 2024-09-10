@@ -23,24 +23,28 @@ class AchievementsScreen extends StatelessWidget {
               'Great start! Your home is already becoming more energy efficient!',
               '25%',
               0.25,
+              'assets/images/achievement1.png', // First image path
             ),
             SizedBox(height: 16),
             _buildAchievementCard(
               'Halfway there! Your energy-saving efforts are making a big impact!',
               '50%',
               0.50,
+              'assets/images/achievement2.png', // Second image path
             ),
             SizedBox(height: 16),
             _buildAchievementCard(
               'Almost at the finish line! Your home is now a model of efficiency!',
               '75%',
               0.75,
+              'assets/images/achievement3.png', // Third image path
             ),
             SizedBox(height: 16),
             _buildAchievementCard(
               'Amazing work! You’ve mastered energy-saving and maximized your home\'s efficiency!',
               '100%',
               1.0,
+              'assets/images/achievement4.png', // Fourth image path
             ),
           ],
         ),
@@ -63,11 +67,16 @@ class AchievementsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAchievementCard(String text, String progressText, double progress) {
+  Widget _buildAchievementCard(
+    String text,
+    String progressText,
+    double progress,
+    String imagePath, // New parameter to accept the image path
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset('assets/images/placeholder_badge.png', height: 80), // Placeholder for your badge images
+        Image.asset(imagePath, height: 80), // Uses the provided image path
         SizedBox(height: 8),
         Text(
           text,
