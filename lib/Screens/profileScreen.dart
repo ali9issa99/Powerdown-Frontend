@@ -6,12 +6,20 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Set background color to white
+      backgroundColor: Colors.white,
+      // Set background color to white
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text(
+          'Profile',
+          style: TextStyle(
+            fontSize: 29,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0, // Remove shadow
         iconTheme: const IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -21,7 +29,8 @@ class ProfileScreen extends StatelessWidget {
             // User Avatar
             const CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/profile.png'), // Use your avatar image
+              backgroundImage:
+                  AssetImage('assets/profile.png'), // Use your avatar image
             ),
             const SizedBox(height: 20),
             // User Name
