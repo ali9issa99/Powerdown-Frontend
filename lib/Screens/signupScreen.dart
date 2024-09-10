@@ -23,7 +23,7 @@ class SignUpScreen extends StatelessWidget {
               ),
               const SizedBox(height: 50), // Add more space between Power Down and Sign up
               const Text(
-                'Sign up',
+                'Sign Up',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -131,7 +131,7 @@ class SignUpScreen extends StatelessWidget {
                   onPressed: () {
                     // Handle sign-up action here
                   },
-                  child: const Text('Sign up'),
+                  child: const Text('Sign Up'),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white, // Set the text color to white
                     padding: const EdgeInsets.symmetric(vertical: 15),
