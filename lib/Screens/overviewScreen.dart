@@ -153,29 +153,42 @@ class OverviewScreen extends StatelessWidget {
   }
 
   // Customizable Circular Progress Indicator
-  Widget _buildCircularProgress(double progress) {
-    return Container(
-      width: 120, // Increased circular progress size
-      height: 120,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          CircularProgressIndicator(
+ 
+Widget _buildCircularProgress(double progress) {
+  return SizedBox(
+    width: 180,  // Adjusted width for the circle
+    height: 180, // Adjusted height for the circle
+    child: Stack(
+      alignment: Alignment.center,
+      children: [
+        SizedBox(
+          width: 120, // Make the inner circle slightly smaller
+          height: 120, // Inner circle height
+          child: CircularProgressIndicator(
             value: progress,
-            strokeWidth: 12, // Thicker stroke width
+            strokeWidth: 18, // Adjust this to control thickness
             backgroundColor: Colors.grey[300],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.green), // Progress color
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
           ),
-          Text(
-            '${(progress * 100).toInt()}%',
-            style: TextStyle(
-              fontSize: 18, // Increased percentage text size
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
+        ),
+        Positioned(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '${(progress * 100).toInt()}%',
+                style: TextStyle(
+                  fontSize: 30, // Increased font size
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              
+            ],
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
 }
