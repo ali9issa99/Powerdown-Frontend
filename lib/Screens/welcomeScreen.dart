@@ -19,44 +19,42 @@ class WelcomeScreen extends StatelessWidget {
             ),
           ),
           // Foreground content
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Text(
-                    'Your Smart Companion for a Cozy, Efficient Home!',
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Text(
+                  'Your Smart Companion for a Cozy, Efficient Home!',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    // fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login'); // Navigates to the login screen
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF004D40), // Custom button color
+                    padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
+                  child: const Text(
+                    "Let's Get Started!",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
-                      // fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/login'); // Navigates to the login screen
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF004D40), // Custom button color
-                      padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                    ),
-                    child: const Text(
-                      "Let's Get Started!",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
+                      fontSize: 18,
                     ),
                   ),
-                  const SizedBox(height: 50), // Adding space at the bottom
-                ],
-              ),
+                ),
+                const SizedBox(height: 50), // Adding space at the bottom
+              ],
             ),
           ),
         ],
