@@ -6,11 +6,16 @@ import 'package:powerdown_frontend/Screens/addRoomScreen.dart';
 import 'package:powerdown_frontend/Screens/analyticsScreen.dart'; 
 import 'package:powerdown_frontend/Screens/achievementsScreen.dart';
 import 'package:powerdown_frontend/Screens/profileScreen.dart';
+import 'package:powerdown_frontend/provider/roomProvider.dart';
+import 'package:provider/provider.dart';
 
 
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+
+    ChangeNotifierProvider(create: (context)=> deviceProvider(),child: const MyApp(),)
+  );
 }
 
 class MyApp extends StatelessWidget {
