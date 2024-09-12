@@ -15,7 +15,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   // Replace with your backend URL
-  final String backendUrl = 'http://localhost:8080/api/auth/register';
+  final String backendUrl = 'http://10.0.2.2:8080/auth/register';
+
 
   Future<void> _registerUser() async {
     final String name = _nameController.text.trim();
