@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   google_sign_in: ^6.2.1
-  flutter_svg: ^2.0.10+1
+  flutter_svg: ^2.0.7
   fl_chart: ^0.69.0
   http: ^1.0.0
   provider: ^6.1.2
@@ -68,6 +68,9 @@ flutter:
     - assets/icons/achievements.svg
     - assets/icons/profile.svg
     - assets/icons/plus.svg
+    - assets/icons/fan.svg
+    - assets/icons/fan1.svg
+
 
     - assets/activeIcons/home.svg
     - assets/activeIcons/analytics.svg
@@ -78,6 +81,13 @@ flutter:
     - assets/badges/trophy.png
     - assets/badges/emerald.png
     - assets/badges/diamond.png
+
+    - assets/images/bathroom.png
+    - assets/images/bedroom.png
+    - assets/images/guestRoom.png
+    - assets/images/kitchen.png
+    - assets/images/livingRoom.png
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
