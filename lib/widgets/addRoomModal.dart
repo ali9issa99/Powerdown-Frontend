@@ -17,16 +17,15 @@ class _AddRoomModalState extends State<AddRoomModal> {
   Widget build(BuildContext context) {
     final room = Provider.of<deviceProvider>(context);
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+          ),
         ),
-      ),
-      padding: const EdgeInsets.all(16.0),
-    
-        child:  Column(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -71,8 +70,9 @@ class _AddRoomModalState extends State<AddRoomModal> {
                   ),
                 ],
                 onChanged: (value) {
-        
-                  room.setSelectedRoom = value!;
+                  setState(() {
+                    _selectedRoom = value!;
+                  });
                 },
                 isExpanded: true,
                 decoration: InputDecoration(
@@ -85,8 +85,9 @@ class _AddRoomModalState extends State<AddRoomModal> {
             const SizedBox(height: 100),
             ElevatedButton(
               onPressed: () {
+                room.addRoom(_selectedRoom, ''); // Add the room here
                 Navigator.pop(context); // Close the current modal
-        
+
                 // Open AddDeviceModal and pass the selected room
                 showModalBottomSheet(
                   context: context,
@@ -96,7 +97,8 @@ class _AddRoomModalState extends State<AddRoomModal> {
                     return DraggableScrollableSheet(
                       expand: false,
                       builder: (context, scrollController) {
-                        return AddDeviceModal(selectedRoom: _selectedRoom); // Pass the room
+                        return AddDeviceModal(
+                            selectedRoom: _selectedRoom); // Pass the room
                       },
                     );
                   },
@@ -127,7 +129,8 @@ class _AddRoomModalState extends State<AddRoomModal> {
                 minimumSize: const Size.fromHeight(48),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25.0),
-                  side: const BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                  side: const BorderSide(
+                      color: Color.fromARGB(255, 255, 255, 255)),
                 ),
               ),
               child: const Text(
@@ -137,9 +140,5 @@ class _AddRoomModalState extends State<AddRoomModal> {
             ),
           ],
         ));
-
-      
-       
   }
 }
-
