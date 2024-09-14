@@ -13,22 +13,49 @@ class RoomProvider extends ChangeNotifier {
 
 
 
+// class deviceProvider with ChangeNotifier {
+//   List<Map<String, String>> selectedRooms = [];
+
+//   void addRoom(String roomName, String imagePath) {
+//     selectedRooms.add({
+//       'name': roomName,
+//       'imagePath': imagePath,
+//     });
+//     notifyListeners();
+//   }
+
+//   void removeRoom(int index) {
+//     selectedRooms.removeAt(index);
+//     notifyListeners();
+//   }
+// }
+
+
+
+
+
 class deviceProvider with ChangeNotifier {
   List<Map<String, String>> selectedRooms = [];
 
+  // Method to add a room
   void addRoom(String roomName, String imagePath) {
     selectedRooms.add({
       'name': roomName,
       'imagePath': imagePath,
     });
-    notifyListeners();
+    notifyListeners(); // Notify listeners that the list has changed
   }
 
+  // Method to remove a room
   void removeRoom(int index) {
     selectedRooms.removeAt(index);
     notifyListeners();
   }
 }
+
+
+
+
 
 
 
