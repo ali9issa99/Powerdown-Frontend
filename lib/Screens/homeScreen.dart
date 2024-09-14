@@ -40,7 +40,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   void _showAddRoomModal() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black.withOpacity(0.5),
       isScrollControlled: true,
       builder: (context) {
         return DraggableScrollableSheet(
@@ -49,8 +49,9 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
             return AddRoomModal(
               onRoomSelected: (roomName) {
                 setState(() {
-                  _selectedRoom = roomName; // Store selected room
+                  _selectedRoom = roomName; // Store the selected room
                 });
+                Navigator.pop(context);
                 _showAddDeviceModal(roomName); // Show add device modal
               },
             );
@@ -63,39 +64,61 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   void _showAddDeviceModal(String selectedRoom) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor:
+          Colors.black.withOpacity(0.5), // Dark transparent background
       isScrollControlled: true,
       builder: (context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          builder: (context, scrollController) {
-            return AddDeviceModal(
-              selectedRoom: selectedRoom,
-              onRoomAdded: _addRoom, // Pass callback to add room
-            );
+        return AddDeviceModal(
+          selectedRoom: selectedRoom,
+          onRoomAdded: (roomName) {
+            _showConfirmationModal(roomName);
           },
         );
       },
     );
   }
 
-  void _showConfirmationModal(String selectedRoom) {
+  void _showConfirmationModal(String roomName) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor:
+          Colors.transparent, // Transparent background for the modal sheet
       isScrollControlled: true,
       builder: (context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          builder: (context, scrollController) {
-            return ConfirmationModal(
-              selectedRoom: selectedRoom,
-              onRoomAdded: _addRoom, // Pass callback to add room
-            );
-          },
+        return Stack(
+          children: [
+            ModalBarrier(
+              dismissible: true,
+              color: Colors.black.withOpacity(0.5), // Dims the background
+            ),
+            // The modal content goes on top of the barrier
+            Container(
+              decoration: const BoxDecoration(
+                color: Colors.white, // Modal content
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
+              ),
+              padding: const EdgeInsets.all(16.0),
+              child: ConfirmationModal(
+                selectedRoom: roomName,
+                onRoomAdded: (roomName) {
+                  _addRoom(roomName); // Add room to provider
+                },
+              ),
+            ),
+          ],
         );
       },
     );
+  }
+
+  void _addRoom(String roomName) {
+    String imagePath =
+        _getRoomImagePath(roomName); // Get image path based on room name
+    Provider.of<deviceProvider>(context, listen: false)
+        .addRoom(roomName, imagePath); // Add the room to the list
   }
 
   // Function to get the image path based on room name
@@ -116,13 +139,13 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
     }
   }
 
-  // Add room along with image path
-  void _addRoom(String roomName) {
-    String imagePath =
-        _getRoomImagePath(roomName); // Get image path based on room name
-    Provider.of<deviceProvider>(context, listen: false)
-        .addRoom(roomName, imagePath);
-  }
+  // // Add room along with image path
+  // void _addRoom(String roomName) {
+  //   String imagePath =
+  //       _getRoomImagePath(roomName); // Get image path based on room name
+  //   Provider.of<deviceProvider>(context, listen: false)
+  //       .addRoom(roomName, imagePath);
+  // }
 
   @override
   Widget build(BuildContext context) {
