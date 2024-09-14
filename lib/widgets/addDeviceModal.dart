@@ -184,12 +184,6 @@
 //   }
 // }
 
-
-
-
-
-
-
 // import 'package:flutter/material.dart';
 
 // class AddDeviceModal extends StatelessWidget {
@@ -252,15 +246,7 @@
 //   }
 // }
 
-
-
-
-
-
-
 // import 'package:flutter/material.dart';
-
-
 
 // class AddDeviceModal extends StatelessWidget {
 //   final String selectedRoom;
@@ -322,9 +308,6 @@
 //   }
 // }
 
-
-
-
 import 'package:flutter/material.dart';
 import 'package:powerdown_frontend/widgets/addRoomModal.dart';
 import 'package:powerdown_frontend/widgets/confirmationModal.dart';
@@ -342,7 +325,7 @@ class AddDeviceModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      heightFactor: 1.7, // Increased to make it extend more upwards
+      heightFactor: 0.67, // Increased to make it extend more upwards
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -386,27 +369,21 @@ class AddDeviceModal extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 40),
-              ElevatedButton(
+               ElevatedButton(
                 onPressed: () {
-                  // Close AddDeviceModal
-                  Navigator.pop(context);
-
-                  // Open ConfirmationModal after a short delay
-                  Future.delayed(Duration(milliseconds: 200), () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (BuildContext context) {
-                        return ConfirmationModal(
-                          selectedRoom:
-                              selectedRoom, // Pass the selected room to ConfirmationModal
-                          onRoomAdded: (roomName) {
-                            // Handle any action when room is confirmed
-                          },
-                        );
-                      },
-                    );
-                  });
+                  // Navigate to ConfirmationModal without closing AddDeviceModal
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConfirmationModal(
+                        selectedRoom: selectedRoom,
+                        onRoomAdded: (roomName) {
+                          // Add the room logic here when Done is pressed in ConfirmationModal
+                          Navigator.pop(context); // Close ConfirmationModal
+                        },
+                      ),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF004B43),
