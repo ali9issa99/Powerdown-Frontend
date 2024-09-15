@@ -69,7 +69,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
       isScrollControlled: true,
       builder: (context) {
         return AddDeviceModal(
-          selectedRoom: selectedRoom,
+          selectedRoomId: selectedRoom,
           onRoomAdded: (roomName) {
             _showConfirmationModal(roomName);
           },
@@ -190,11 +190,13 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     itemBuilder: (context, index) {
                       final room = roomProvider.selectedRooms[index];
                       return RoomCard(
-                        roomName: room['name']!,
+                        roomId: room['id']!, // Pass roomId here
+                        roomName: room['name']!, // Room name
                         imagePath:
-                            room['imagePath']!, // Use image path from the list
+                            room['imagePath']!, // Image path for the room
                         onDelete: () {
-                          roomProvider.removeRoom(index);
+                          roomProvider.removeRoom(
+                              room['id']!); // Use removeRoom with roomId
                         },
                         onTap: () {
                           // Navigate to the room's details
