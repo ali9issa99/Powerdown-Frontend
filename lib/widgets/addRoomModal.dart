@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:powerdown_frontend/provider/roomProvider.dart';
+// import 'package:powerdown_frontend/provider/roomProvider.dart';
 import 'package:powerdown_frontend/widgets/addDeviceModal.dart';
 import 'package:powerdown_frontend/widgets/confirmationModal.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 class AddRoomModal extends StatefulWidget {
   final void Function(String) onRoomSelected;
@@ -78,7 +78,7 @@ class _AddRoomModalState extends State<AddRoomModal> {
                 isScrollControlled: true,
                 builder: (context) {
                   return AddDeviceModal(
-                    selectedRoom: _selectedRoom, // Pass selected room
+                    selectedRoomId: _selectedRoom, // Pass selected room
                     onRoomAdded: (roomName) {
                       _showConfirmationModal(roomName);
                     },
