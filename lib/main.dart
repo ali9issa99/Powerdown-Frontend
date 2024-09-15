@@ -13,10 +13,17 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-
-    ChangeNotifierProvider(create: (context)=> deviceProvider(),child: const MyApp(),)
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => DeviceProvider()),
+        ChangeNotifierProvider(create: (_) => RoomProvider()),
+        // Other providers...
+      ],
+      child: MyApp(),
+    ),
   );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
