@@ -1,14 +1,17 @@
-// roomDetails.dart
-
 import 'package:flutter/material.dart';
 
 class RoomDetails extends StatefulWidget {
+  final String roomName; // Pass the room name dynamically
+  final String imagePath; // Pass the image path dynamically
+
+  const RoomDetails({required this.roomName, required this.imagePath});
+
   @override
   _RoomDetailsState createState() => _RoomDetailsState();
 }
 
 class _RoomDetailsState extends State<RoomDetails> {
-  // Example device statuses
+  // Example device statuses (you can fetch them dynamically)
   Map<String, bool> deviceStatus = {
     'Smart TV': true,
     'AC': false,
@@ -22,101 +25,76 @@ class _RoomDetailsState extends State<RoomDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Living Room'),
+        title: Text(
+          widget.roomName,
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
+        ), // Dynamic title based on the room name
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(
+            Icons.arrow_back_ios, // iPhone-like back arrow
+            color: Colors.black,
+          ),
           onPressed: () {
-            // Go back to the previous screen
+            Navigator.pop(context); // Go back to the previous screen
           },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              // Add new device or functionality
-            },
-          ),
-        ],
+        backgroundColor: Colors.white,
+        elevation: 0, // Flat design for the app bar
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Room Image
-            Container(
-              width: double.infinity,
-              height: 200,
-              child: Image.network(
-                'https://example.com/room_image.jpg', // Replace with room image URL
-                fit: BoxFit.cover,
+        child: Padding( // Apply consistent padding around all content
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Same padding as homeScreen
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Room Image
+              Container(
+                width: double.infinity,
+                height: 200,
+                child: Image.asset(
+                  widget.imagePath, // Dynamic image based on the room selected
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            SizedBox(height: 10),
-            // Devices Section
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Devices',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  // Device list grid
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 3 / 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                    itemCount: deviceStatus.length,
-                    itemBuilder: (context, index) {
-                      String deviceName = deviceStatus.keys.elementAt(index);
-                      bool isOn = deviceStatus[deviceName]!;
+              SizedBox(height: 10),
+              // Devices Section
+              Text(
+                'Devices',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              // Device list grid
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: deviceStatus.length,
+                itemBuilder: (context, index) {
+                  String deviceName = deviceStatus.keys.elementAt(index);
+                  bool isOn = deviceStatus[deviceName]!;
 
-                      return DeviceTile(
-                        deviceName: deviceName,
-                        isOn: isOn,
-                        onToggle: (value) {
-                          setState(() {
-                            deviceStatus[deviceName] = value;
-                          });
-                        },
-                      );
+                  return DeviceTile(
+                    deviceName: deviceName,
+                    isOn: isOn,
+                    onToggle: (value) {
+                      setState(() {
+                        deviceStatus[deviceName] = value;
+                      });
                     },
-                  ),
-                ],
+                  );
+                },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.analytics),
-            label: 'Analytics',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Achievements',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        onTap: (index) {
-          // Handle bottom navigation tap
-        },
       ),
     );
   }
