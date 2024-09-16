@@ -64,8 +64,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   void _showAddDeviceModal(String selectedRoom) {
     showModalBottomSheet(
       context: context,
-      backgroundColor:
-          Colors.black.withOpacity(0.5), // Dark transparent background
+ 
       isScrollControlled: true,
       builder: (context) {
         return AddDeviceModal(
@@ -82,14 +81,13 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
     showModalBottomSheet(
       context: context,
       backgroundColor:
-          Colors.transparent, // Transparent background for the modal sheet
+          Colors.white, // Transparent background for the modal sheet
       isScrollControlled: true,
       builder: (context) {
         return Stack(
           children: [
             ModalBarrier(
               dismissible: true,
-              color: Colors.black.withOpacity(0.5), // Dims the background
             ),
             // The modal content goes on top of the barrier
             Container(
@@ -117,7 +115,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   void _addRoom(String roomName) {
     String imagePath =
         _getRoomImagePath(roomName); // Get image path based on room name
-    Provider.of<deviceProvider>(context, listen: false)
+    Provider.of<DeviceProvider>(context, listen: false)
         .addRoom(roomName, imagePath); // Add the room to the list
   }
 
@@ -174,7 +172,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
         ],
       ),
       body: Center(
-        child: Consumer<deviceProvider>(
+        child: Consumer<DeviceProvider>(
           builder: (context, roomProvider, child) {
             return roomProvider.selectedRooms.isEmpty
                 ? const Text(
