@@ -247,7 +247,7 @@ class AddDeviceModal extends StatelessWidget {
                   ),
                   DeviceTile(
                     deviceName: 'Fan',
-                    deviceIcon: Icons.toys,
+                    deviceIcon: Icons.mode_fan_off_outlined,
                     selectedRoomId: selectedRoomId,
                   ),
                   DeviceTile(
