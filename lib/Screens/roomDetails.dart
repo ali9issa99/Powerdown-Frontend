@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:powerdown_frontend/widgets/navbar.dart';
 
 class RoomDetails extends StatefulWidget {
   final String roomName; // Pass the room name dynamically
@@ -21,9 +22,19 @@ class _RoomDetailsState extends State<RoomDetails> {
     'Light 2': true,
   };
 
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    // Handle navigation between tabs (home, analytics, achievements, profile)
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           widget.roomName,
@@ -45,18 +56,21 @@ class _RoomDetailsState extends State<RoomDetails> {
         elevation: 0, // Flat design for the app bar
       ),
       body: SingleChildScrollView(
-        child: Padding( // Apply consistent padding around all content
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Same padding as homeScreen
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Room Image
-              Container(
-                width: double.infinity,
-                height: 200,
-                child: Image.asset(
-                  widget.imagePath, // Dynamic image based on the room selected
-                  fit: BoxFit.cover,
+              // Room Image with Border Radius
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 200,
+                  child: Image.asset(
+                    widget.imagePath,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               SizedBox(height: 10),
@@ -80,9 +94,11 @@ class _RoomDetailsState extends State<RoomDetails> {
                 itemBuilder: (context, index) {
                   String deviceName = deviceStatus.keys.elementAt(index);
                   bool isOn = deviceStatus[deviceName]!;
+                  IconData deviceIcon = _getDeviceIcon(deviceName);
 
                   return DeviceTile(
                     deviceName: deviceName,
+                    deviceIcon: deviceIcon,
                     isOn: isOn,
                     onToggle: (value) {
                       setState(() {
@@ -96,17 +112,41 @@ class _RoomDetailsState extends State<RoomDetails> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+      ),
     );
+  }
+
+  IconData _getDeviceIcon(String deviceName) {
+    switch (deviceName) {
+      case 'Smart TV':
+        return Icons.tv;
+      case 'AC':
+        return Icons.ac_unit;
+      case 'Heater':
+        return Icons.fireplace;
+      case 'Light 1':
+      case 'Light 2':
+        return Icons.lightbulb;
+      case 'Fan':
+        return Icons.mode_fan_off_outlined;
+      default:
+        return Icons.device_unknown;
+    }
   }
 }
 
 class DeviceTile extends StatelessWidget {
   final String deviceName;
+  final IconData deviceIcon;
   final bool isOn;
   final ValueChanged<bool> onToggle;
 
   const DeviceTile({
     required this.deviceName,
+    required this.deviceIcon,
     required this.isOn,
     required this.onToggle,
   });
@@ -119,19 +159,30 @@ class DeviceTile extends StatelessWidget {
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(deviceName, style: TextStyle(fontSize: 16)),
-              Text(isOn ? 'On' : 'Off', style: TextStyle(fontSize: 14)),
-            ],
+          Align(
+            alignment: Alignment.topLeft,
+            child: Icon(deviceIcon, size: 40, color: Colors.grey), // Device Icon
           ),
-          Switch(
-            value: isOn,
-            onChanged: onToggle,
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(deviceName, style: TextStyle(fontSize: 16)),
+                Text(isOn ? 'On' : 'Off', style: TextStyle(fontSize: 14)),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Switch(
+              value: isOn,
+              onChanged: onToggle,
+              activeColor: Colors.green, // Green color when the switch is ON
+            ),
           ),
         ],
       ),
