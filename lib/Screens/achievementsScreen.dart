@@ -58,7 +58,7 @@ class AchievementsScreen extends StatelessWidget {
         onItemTapped: (int index) {
           // Handle the navigation logic here based on the tapped index
           if (index == 0) {
-            Navigator.pushNamed(context, '/home'); // Example route for Home
+            Navigator.pushNamed(context, '/addRoom'); // Example route for Home
           } else if (index == 1) {
             Navigator.pushNamed(context, '/analytics'); // Example route for Analytics
           } else if (index == 2) {
