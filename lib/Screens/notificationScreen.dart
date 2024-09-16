@@ -20,7 +20,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     // Add navigation logic for different screens
     switch (index) {
       case 0:
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushReplacementNamed(context, '/addRoom');
         break;
       case 1:
         Navigator.pushReplacementNamed(context, '/analytics');
