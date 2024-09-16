@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:powerdown_frontend/provider/roomProvider.dart';
 import 'package:provider/provider.dart';
+import 'package:powerdown_frontend/Screens/roomDetails.dart'; // Import roomDetails.dart to navigate to it
 
 // class RoomCard extends StatelessWidget {
 //   final String roomName;
@@ -158,14 +159,12 @@ import 'package:provider/provider.dart';
 
 
 
-
-
 class RoomCard extends StatelessWidget {
   final String roomId;
   final String roomName;
   final String imagePath;
   final VoidCallback onDelete;
-  final VoidCallback onTap;
+  final VoidCallback onTap; // You can keep this if you have other usages
 
   const RoomCard({
     Key? key,
@@ -215,7 +214,18 @@ class RoomCard extends StatelessWidget {
         }).toList();
 
         return GestureDetector(
-          onTap: onTap,
+          onTap: () {
+            // Navigate to the roomDetails screen when card is tapped
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RoomDetails(
+                  roomName: roomName, // Pass the room name dynamically
+                  imagePath: imagePath, // Pass the image path dynamically
+                ),
+              ),
+            );
+          },
           child: Card(
             elevation: 5,
             margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
