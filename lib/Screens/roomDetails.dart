@@ -25,10 +25,25 @@ class _RoomDetailsState extends State<RoomDetails> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    // Handle navigation between tabs (home, analytics, achievements, profile)
     setState(() {
       _selectedIndex = index;
     });
+
+    // Use Navigator.pushReplacementNamed to replace the current screen
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, '/addRoom');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/analytics');
+        break;
+      case 2:
+        Navigator.pushReplacementNamed(context, '/achievements');
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, '/profile');
+        break;
+    }
   }
 
   @override
