@@ -20,7 +20,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
     switch (index) {
       case 0:
         // Navigate to Home Screen
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushReplacementNamed(context, '/addRoom');
         break;
       case 1:
         // Navigate to Analytics Screen
