@@ -12,11 +12,6 @@ class RoomProvider extends ChangeNotifier {
   }
 }
 
-
-
-
-
-
 // class deviceProvider with ChangeNotifier {
 //   List<Map<String, String>> selectedRooms = [];
 
@@ -35,14 +30,6 @@ class RoomProvider extends ChangeNotifier {
 //     notifyListeners();
 //   }
 // }
-
-
-
-
-
-
-
-
 
 // class deviceProvider with ChangeNotifier {
 //   List<Map<String, dynamic>> selectedRooms = [];
@@ -80,56 +67,71 @@ class RoomProvider extends ChangeNotifier {
 //   }
 // }
 
-
-
-class deviceProvider with ChangeNotifier {
+class DeviceProvider with ChangeNotifier {
   final Uuid uuid = Uuid(); // For generating unique IDs
   List<Map<String, dynamic>> selectedRooms = [];
 
-  // Add unique ID to each room and ensure 'devices' is initialized as an empty list
-  void addRoom(String roomName, String imagePath) {
+  // // Add unique ID to each room and ensure 'devices' is initialized as an empty list
+  // void addRoom(String roomName, String imagePath) {
+  //   selectedRooms.add({
+  //     'id': uuid.v4(), // Generate a unique ID
+  //     'name': roomName,
+  //     'imagePath': imagePath,
+  //     'devices': <String>[], // Initialize an empty list of devices
+  //   });
+  //   notifyListeners();
+  // }
+
+
+
+  String addRoom(String roomName, String imagePath) {
+    final roomId = uuid.v4(); // Generate a unique ID
     selectedRooms.add({
-      'id': uuid.v4(), // Generate a unique ID
+      'id': roomId,
       'name': roomName,
       'imagePath': imagePath,
-      'devices': <String>[], // Initialize an empty list of devices
+      'devices': <String>[],
     });
     notifyListeners();
+    return roomId;
   }
 
-  // Modify removeRoom to use the room's unique ID
   void removeRoom(String roomId) {
     selectedRooms.removeWhere((room) => room['id'] == roomId);
+    selectedRooms = List<Map<String, dynamic>>.from(selectedRooms); // Ensure list is replaced
     notifyListeners();
   }
 
-  // Method to add a device to a room
-   void addDeviceToRoom(String roomId, String deviceName) {
-    final roomIndex = selectedRooms.indexWhere((room) => room['id'] == roomId);
-    if (roomIndex != -1) {
-      // Create a new map and list to ensure ChangeNotifier detects changes
-      Map<String, dynamic> room = Map<String, dynamic>.from(selectedRooms[roomIndex]);
-      List<String> devices = List<String>.from(room['devices'] as List<String>? ?? <String>[]);
+  // Updated methods with list replacement
+void addDeviceToRoom(String roomId, String deviceName) {
+  final roomIndex = selectedRooms.indexWhere((room) => room['id'] == roomId);
+  if (roomIndex != -1) {
+    Map<String, dynamic> room = Map<String, dynamic>.from(selectedRooms[roomIndex]);
+    List<String> devices = List<String>.from(room['devices'] as List<String>? ?? <String>[]);
 
-      if (!devices.contains(deviceName)) {
-        devices.add(deviceName);
-        room['devices'] = devices;
-        selectedRooms[roomIndex] = room;
-        notifyListeners();
-      }
+    if (!devices.contains(deviceName)) {
+      devices.add(deviceName);
+      room['devices'] = devices;
+      selectedRooms[roomIndex] = room;
+      selectedRooms = List<Map<String, dynamic>>.from(selectedRooms); // Replace entire list
+      notifyListeners();
     }
   }
+}
+
 
   void removeDeviceFromRoom(String roomId, String deviceName) {
     final roomIndex = selectedRooms.indexWhere((room) => room['id'] == roomId);
     if (roomIndex != -1) {
-      Map<String, dynamic> room = Map<String, dynamic>.from(selectedRooms[roomIndex]);
+      List<Map<String, dynamic>> roomsClone = List<Map<String, dynamic>>.from(selectedRooms);
+      Map<String, dynamic> room = Map<String, dynamic>.from(roomsClone[roomIndex]);
       List<String> devices = List<String>.from(room['devices'] as List<String>? ?? <String>[]);
 
       if (devices.contains(deviceName)) {
         devices.remove(deviceName);
         room['devices'] = devices;
-        selectedRooms[roomIndex] = room;
+        roomsClone[roomIndex] = room;
+        selectedRooms = roomsClone;
         notifyListeners();
       }
     }
