@@ -157,6 +157,9 @@ import 'package:provider/provider.dart';
 
 
 
+
+
+
 class RoomCard extends StatelessWidget {
   final String roomId;
   final String roomName;
@@ -166,7 +169,7 @@ class RoomCard extends StatelessWidget {
 
   const RoomCard({
     Key? key,
-    required this.roomId, 
+    required this.roomId,
     required this.roomName,
     required this.imagePath,
     required this.onDelete,
@@ -175,85 +178,95 @@ class RoomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get devices from the provider for this room
-    final devices = Provider.of<deviceProvider>(context).getDevicesForRoom(roomId);
+    print('Building RoomCard for roomId: $roomId');
+    return Consumer<DeviceProvider>(
+      builder: (context, provider, child) {
+        // Get devices from the provider for this room
+        final devices =
+            Provider.of<DeviceProvider>(context).getDevicesForRoom(roomId);
+        print('Devices in room $roomId: $devices');
+        // Build device icons based on the devices
+        List<Widget> deviceIcons = devices.toSet().map<Widget>((device) {
+          IconData? icon;
+          switch (device) {
+            case 'Smart Tv':
+              icon = Icons.tv;
+              break;
+            case 'AC':
+              icon = Icons.ac_unit;
+              break;
+            case 'Heater':
+              icon = Icons.fireplace;
+              break;
+            case 'Light 1':
+            case 'Light 2':
+              icon = Icons.lightbulb;
+              break;
+            case 'Fan':
+              icon = Icons.toys;
+              break;
+            default:
+              icon = null;
+          }
 
-    // Build device icons based on the devices
-    List<Widget> deviceIcons = devices.toSet().map<Widget>((device) {
-      IconData? icon;
-      switch (device) {
-        case 'Smart Tv':
-          icon = Icons.tv;
-          break;
-        case 'AC':
-          icon = Icons.ac_unit;
-          break;
-        case 'Heater':
-          icon = Icons.fireplace;
-          break;
-        case 'Light 1':
-        case 'Light 2':
-          icon = Icons.lightbulb;
-          break;
-        case 'Fan':
-          icon = Icons.toys;
-          break;
-        default:
-          icon = null;
-      }
+          return icon != null
+              ? Icon(icon, color: Colors.grey)
+              : SizedBox.shrink();
+        }).toList();
 
-      return icon != null ? Icon(icon, color: Colors.grey) : SizedBox.shrink();
-    }).toList();
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Card(
-        elevation: 5,
-        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              ),
-              child: Image.asset(
-                imagePath,
-                width: double.infinity,
-                height: 150,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Text(
-                roomName,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 6.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(children: deviceIcons), 
-                  IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.grey),
-                    onPressed: onDelete,
+        return GestureDetector(
+          onTap: onTap,
+          child: Card(
+            elevation: 5,
+            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
                   ),
-                ],
-              ),
+                  child: Image.asset(
+                    imagePath,
+                    width: double.infinity,
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Text(
+                    roomName,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 12.0, right: 12.0, bottom: 6.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(children: deviceIcons),
+                      IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.grey),
+                        onPressed: onDelete,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
