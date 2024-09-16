@@ -188,13 +188,13 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                     itemBuilder: (context, index) {
                       final room = roomProvider.selectedRooms[index];
                       return RoomCard(
-                        roomId: room['id']!, // Pass roomId here
-                        roomName: room['name']!, // Room name
+                        roomId: room.id, // Pass roomId here
+                        roomName: room.name, // Room name
                         imagePath:
-                            room['imagePath']!, // Image path for the room
+                            room.imagePath, // Image path for the room
                         onDelete: () {
                           roomProvider.removeRoom(
-                              room['id']!); // Use removeRoom with roomId
+                              room.id); // Use removeRoom with roomId
                         },
                         onTap: () {
                           // Navigate to the room's details
