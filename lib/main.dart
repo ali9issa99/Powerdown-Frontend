@@ -6,6 +6,7 @@ import 'package:powerdown_frontend/Screens/homeScreen.dart';
 import 'package:powerdown_frontend/Screens/analyticsScreen.dart'; 
 import 'package:powerdown_frontend/Screens/achievementsScreen.dart';
 import 'package:powerdown_frontend/Screens/profileScreen.dart';
+import 'package:powerdown_frontend/Screens/roomDetails.dart';
 import 'package:powerdown_frontend/provider/roomProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Smart Home App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       initialRoute: '/',
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/analytics': (context) => AnalyticsScreen(),
         '/achievements': (context) => AchievementsScreen(),
         '/profile': (context) => ProfileScreen(),
+        '/roomDetails': (context) => RoomDetails(),
       },
     );
   }
