@@ -49,12 +49,14 @@ class ConfirmationModal extends StatelessWidget {
               const SizedBox(height: 75),
               ElevatedButton(
                 onPressed: () {
-                  if (onRoomAdded != null) {
-                    onRoomAdded!(selectedRoom); // Add room to provider
-                    // Add room to provider
-                    Provider.of<DeviceProvider>(context, listen: false)
-                        .addRoom(selectedRoom, _getRoomImagePath(selectedRoom));
-                  }
+                  // if (onRoomAdded != null) {
+                  //   onRoomAdded!(selectedRoom); // Add room to provider
+                  //   // Add room to provider
+                  //   Provider.of<DeviceProvider>(context, listen: false)
+                  //       .addRoom(selectedRoom, _getRoomImagePath(selectedRoom));
+                  // }
+                  Provider.of<DeviceProvider>(context, listen: false)
+                         .pushRoom();
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
