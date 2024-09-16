@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:powerdown_frontend/models/roomModel.dart';
 import 'package:uuid/uuid.dart'; // Add this package for unique IDs
 
 class RoomProvider extends ChangeNotifier {
@@ -69,7 +70,21 @@ class RoomProvider extends ChangeNotifier {
 
 class DeviceProvider with ChangeNotifier {
   final Uuid uuid = Uuid(); // For generating unique IDs
-  List<Map<String, dynamic>> selectedRooms = [];
+  List<Room> selectedRooms = [];
+
+  Room? roomToAdd;
+  void setRoomName(String roomName) {
+    // roomToAdd["id"] = uuid.v4();
+    // roomToAdd["name"] = roomName;
+    // roomToAdd['devices'] = [];
+    // roomToAdd['imagePath'] = _getRoomImagePath(roomName);
+    roomToAdd = Room(
+      id: uuid.v4(),
+      name: roomName,
+      imagePath: _getRoomImagePath(roomName),
+      devices: [],
+    );
+  }
 
   // // Add unique ID to each room and ensure 'devices' is initialized as an empty list
   // void addRoom(String roomName, String imagePath) {
@@ -81,67 +96,86 @@ class DeviceProvider with ChangeNotifier {
   //   });
   //   notifyListeners();
   // }
-
-
+  String _getRoomImagePath(String roomName) {
+    switch (roomName) {
+      case 'Living Room':
+        return 'assets/images/livingRoom.png';
+      case 'Bedroom':
+        return 'assets/images/bedroom.png';
+      case 'Kitchen':
+        return 'assets/images/kitchen.png';
+      case 'Guest Room':
+        return 'assets/images/guestRoom.png';
+      case 'Bathroom':
+        return 'assets/images/bathroom.png';
+      default:
+        return 'assets/images/defaultRoom.png';
+    }
+  }
 
   String addRoom(String roomName, String imagePath) {
     final roomId = uuid.v4(); // Generate a unique ID
-    selectedRooms.add({
-      'id': roomId,
-      'name': roomName,
-      'imagePath': imagePath,
-      'devices': <String>[],
-    });
+    selectedRooms.add(Room(id: roomId, name: roomName, imagePath: imagePath, devices: []));
     notifyListeners();
     return roomId;
   }
 
   void removeRoom(String roomId) {
-    selectedRooms.removeWhere((room) => room['id'] == roomId);
-    selectedRooms = List<Map<String, dynamic>>.from(selectedRooms); // Ensure list is replaced
+    selectedRooms.removeWhere((room) => room.id == roomId);
+    // selectedRooms = List<Map<String, dynamic>>.from(
+        // selectedRooms); // Ensure list is replaced
+        
     notifyListeners();
   }
 
   // Updated methods with list replacement
-void addDeviceToRoom(String roomId, String deviceName) {
-  final roomIndex = selectedRooms.indexWhere((room) => room['id'] == roomId);
-  if (roomIndex != -1) {
-    Map<String, dynamic> room = Map<String, dynamic>.from(selectedRooms[roomIndex]);
-    List<String> devices = List<String>.from(room['devices'] as List<String>? ?? <String>[]);
+  void addDeviceToRoom(String roomId, String deviceName) {
+    // final roomIndex = selectedRooms.indexWhere((room) => room['id'] == roomId);
+    // print(roomIndex);
+    // if (roomIndex != -1) {
+    //   Map<String, dynamic> room = Map<String, dynamic>.from(selectedRooms[roomIndex]);
+    //   List<String> devices = List<String>.from(room['devices'] as List<String>? ?? <String>[]);
 
-    if (!devices.contains(deviceName)) {
-      devices.add(deviceName);
-      room['devices'] = devices;
-      selectedRooms[roomIndex] = room;
-      selectedRooms = List<Map<String, dynamic>>.from(selectedRooms); // Replace entire list
-      notifyListeners();
+    // print(devices);
+    if (!roomToAdd!.devices.contains(deviceName)) {
+      roomToAdd!.devices.add(deviceName);
+      // room['devices'] = devices;
+      // selectedRooms[roomIndex] = room;
+      // selectedRooms = List<Map<String, dynamic>>.from(selectedRooms); // Replace entire list
+      // print(room);
     }
   }
-}
 
-
-  void removeDeviceFromRoom(String roomId, String deviceName) {
-    final roomIndex = selectedRooms.indexWhere((room) => room['id'] == roomId);
-    if (roomIndex != -1) {
-      List<Map<String, dynamic>> roomsClone = List<Map<String, dynamic>>.from(selectedRooms);
-      Map<String, dynamic> room = Map<String, dynamic>.from(roomsClone[roomIndex]);
-      List<String> devices = List<String>.from(room['devices'] as List<String>? ?? <String>[]);
-
-      if (devices.contains(deviceName)) {
-        devices.remove(deviceName);
-        room['devices'] = devices;
-        roomsClone[roomIndex] = room;
-        selectedRooms = roomsClone;
-        notifyListeners();
-      }
-    }
+  void pushRoom() {
+    selectedRooms.add(roomToAdd!);
+    notifyListeners();
   }
+
+  // void removeDeviceFromRoom(String roomId, String deviceName) {
+  //   final roomIndex = selectedRooms.indexWhere((room) => room.id == roomId);
+  //   if (roomIndex != -1) {
+  //     List<Map<String, dynamic>> roomsClone =
+  //         List<Map<String, dynamic>>.from(selectedRooms);
+  //     Map<String, dynamic> room =
+  //         Map<String, dynamic>.from(roomsClone[roomIndex]);
+  //     List<String> devices =
+  //         List<String>.from(room['devices'] as List<String>? ?? <String>[]);
+
+  //     if (devices.contains(deviceName)) {
+  //       devices.remove(deviceName);
+  //       room['devices'] = devices;
+  //       roomsClone[roomIndex] = room;
+  //       selectedRooms = roomsClone;
+  //       notifyListeners();
+  //     }
+  //   }
+  // }
 
   List<String> getDevicesForRoom(String roomId) {
-    final roomIndex = selectedRooms.indexWhere((room) => room['id'] == roomId);
+    final roomIndex = selectedRooms.indexWhere((room) => room.id == roomId);
     if (roomIndex != -1) {
       final room = selectedRooms[roomIndex];
-      return List<String>.from(room['devices'] ?? <String>[]);
+      return List<String>.from(room.devices ?? <String>[]);
     }
     return <String>[];
   }
