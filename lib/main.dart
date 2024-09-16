@@ -29,7 +29,35 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Smart Home App',
+//       theme: ThemeData(
+//         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+//         useMaterial3: true,
+//       ),
+//       initialRoute: '/',
+//       routes: {
+//         '/': (context) => const WelcomeScreen(),
+//         '/login': (context) => const LoginScreen(), 
+//         '/signup': (context) => const SignUpScreen(), 
+//         '/addRoom': (context) => const AddRoomScreen(),
+//         '/analytics': (context) => AnalyticsScreen(),
+//         '/achievements': (context) => AchievementsScreen(),
+//         '/profile': (context) => ProfileScreen(),
+//         '/roomDetails': (context) => RoomDetails(),
+//       },
+//     );
+//   }
+// }
+
+
+
+
+
+
+ @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Smart Home App',
@@ -38,19 +66,52 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       initialRoute: '/',
-      routes: {
-        '/': (context) => const WelcomeScreen(),
-        '/login': (context) => const LoginScreen(), 
-        '/signup': (context) => const SignUpScreen(), 
-        '/addRoom': (context) => const AddRoomScreen(),
-        '/analytics': (context) => AnalyticsScreen(),
-        '/achievements': (context) => AchievementsScreen(),
-        '/profile': (context) => ProfileScreen(),
-        '/roomDetails': (context) => RoomDetails(),
+      onGenerateRoute: (settings) {
+        if (settings.name == '/roomDetails') {
+          final args = settings.arguments as Map<String, String>;
+          return MaterialPageRoute(
+            builder: (context) {
+              return RoomDetails(
+                roomName: args['roomName']!,
+                imagePath: args['imagePath']!,
+              );
+            },
+          );
+        }
+        // Handle other routes
+        return MaterialPageRoute(
+          builder: (context) {
+            switch (settings.name) {
+              case '/':
+                return const WelcomeScreen();
+              case '/login':
+                return const LoginScreen();
+              case '/signup':
+                return const SignUpScreen();
+              case '/addRoom':
+                return const AddRoomScreen();
+              case '/analytics':
+                return AnalyticsScreen();
+              case '/achievements':
+                return AchievementsScreen();
+              case '/profile':
+                return ProfileScreen();
+              default:
+                return const WelcomeScreen();
+            }
+          },
+        );
       },
     );
   }
 }
+
+
+
+
+
+
+
 
 
 
