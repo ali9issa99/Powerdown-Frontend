@@ -372,8 +372,8 @@ class DeviceTile extends StatelessWidget {
                     ? null // Disable the button if the device is not in the room
                     : () {
                         // Remove the device from the room using roomId (UUID)
-                        Provider.of<DeviceProvider>(context, listen: false)
-                            .removeDeviceFromRoom(selectedRoomId, deviceName);
+                        // Provider.of<DeviceProvider>(context, listen: false)
+                        //     .removeDeviceFromRoom(selectedRoomId, deviceName);
                       },
                 icon: Icon(Icons.remove,
                     color: !isDeviceAdded ? Colors.grey : Colors.black),
