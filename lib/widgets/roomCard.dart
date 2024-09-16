@@ -245,6 +245,7 @@ class RoomCard extends StatelessWidget {
                     height: 150,
                     fit: BoxFit.cover,
                   ),
+                  
                 ),
                 const SizedBox(height: 10),
                 Padding(
