@@ -230,7 +230,7 @@ void _showDeleteConfirmationDialog(BuildContext context) {
               icon = Icons.lightbulb;
               break;
             case 'Fan':
-              icon = Icons.toys;
+              icon = Icons.mode_fan_off_outlined;
               break;
             default:
               icon = null;
