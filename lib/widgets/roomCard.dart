@@ -155,10 +155,6 @@ import 'package:powerdown_frontend/Screens/roomDetails.dart'; // Import roomDeta
 //   }
 // }
 
-
-
-
-
 class RoomCard extends StatelessWidget {
   final String roomId;
   final String roomName;
@@ -174,6 +170,38 @@ class RoomCard extends StatelessWidget {
     required this.onDelete,
     required this.onTap,
   }) : super(key: key);
+
+
+  // Function to show the delete confirmation dialog
+void _showDeleteConfirmationDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Confirm Deletion'),
+        content: const Text('Are you sure you want to delete this room?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+              onDelete(); // Call the onDelete function
+            },
+            child: const Text(
+              'Delete',
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -245,7 +273,6 @@ class RoomCard extends StatelessWidget {
                     height: 150,
                     fit: BoxFit.cover,
                   ),
-                  
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -268,7 +295,9 @@ class RoomCard extends StatelessWidget {
                       Row(children: deviceIcons),
                       IconButton(
                         icon: const Icon(Icons.delete, color: Colors.grey),
-                        onPressed: onDelete,
+                        onPressed: () {
+                          _showDeleteConfirmationDialog(context);
+                        },
                       ),
                     ],
                   ),
