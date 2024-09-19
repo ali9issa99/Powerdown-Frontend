@@ -3,7 +3,6 @@ import 'signupScreen.dart'; // Import the SignUpScreen
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -120,8 +119,11 @@ class LoginScreen extends StatelessWidget {
                               builder: (context) => const SignUpScreen()),
                         );
                       },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero, // Remove padding
+                      ),
                       child: const Text(
-                        'Sign-Up',
+                        'Sign Up',
                         style:
                             TextStyle(color: Color.fromARGB(255, 0, 105, 190)),
                       ),
