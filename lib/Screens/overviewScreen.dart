@@ -66,7 +66,7 @@ class OverviewScreen extends StatelessWidget {
                 _buildIconText(Icons.attach_money, '\$5.20', 'Estimated Cost'),
               ],
             ),
-            SizedBox(height: 35),
+            SizedBox(height: 50),
             Text(
               'Energy Consumption Tracker',
               style: TextStyle(
@@ -74,42 +74,38 @@ class OverviewScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 16),
-            Row(
+            SizedBox(height: 20),
+            Column( // Changed from Row to Column
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '• Monthly energy usage\n  165 kWh.',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        '• Monthly goal reduce\n  usage to 300 kWh.',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        '• Progress 45% achieved.',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
+                Text(
+                  '• Monthly energy usage\n  165 kWh.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
                   ),
                 ),
-                _buildCircularProgress(0.45),
+                SizedBox(height: 12),
+                Text(
+                  '• Monthly goal reduce\n  usage to 300 kWh.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: 12),
+                Text(
+                  '• Progress 45% achieved.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
               ],
+            ),
+            SizedBox(height: 20), // Added space between text and circular progress
+            Center( // Center the circular progress indicator horizontally
+              child: _buildCircularProgress(0.45),
             ),
           ],
         ),
@@ -154,42 +150,40 @@ class OverviewScreen extends StatelessWidget {
   }
 
   // Customizable Circular Progress Indicator
- 
-Widget _buildCircularProgress(double progress) {
-  return SizedBox(
-    width: 180,  // Adjusted width for the circle
-    height: 180, // Adjusted height for the circle
-    child: Stack(
-      alignment: Alignment.center,
-      children: [
-        SizedBox(
-          width: 120, // Make the inner circle slightly smaller
-          height: 120, // Inner circle height
-          child: CircularProgressIndicator(
-            value: progress,
-            strokeWidth: 18, // Adjust this to control thickness
-            backgroundColor: Colors.grey[300],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+  Widget _buildCircularProgress(double progress) {
+    return SizedBox(
+      width: 200,  // Adjusted width for the circle
+      height: 200, // Adjusted height for the circle
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SizedBox(
+            width: 150, // Make the inner circle slightly smaller
+            height: 150, // Inner circle height
+            child: CircularProgressIndicator(
+              value: progress,
+              strokeWidth: 26, // Adjust this to control thickness
+              backgroundColor: Colors.grey[300],
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+            ),
           ),
-        ),
-        Positioned(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '${(progress * 100).toInt()}%',
-                style: TextStyle(
-                  fontSize: 30, // Increased font size
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+          Positioned(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '${(progress * 100).toInt()}%',
+                  style: TextStyle(
+                    fontSize: 30, // Increased font size
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
-    ),
-  );
-}
+        ],
+      ),
+    );
+  }
 }
