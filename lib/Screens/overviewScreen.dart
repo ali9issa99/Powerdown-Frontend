@@ -58,7 +58,7 @@ class OverviewScreen extends StatelessWidget {
                 color: const Color.fromARGB(255, 0, 0, 0),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -79,7 +79,7 @@ class OverviewScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '• Monthly energy usage\n  165 kWh.',
+                  '• Monthly energy usage 165 kWh.',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,
@@ -87,7 +87,7 @@ class OverviewScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 Text(
-                  '• Monthly goal reduce\n  usage to 300 kWh.',
+                  '• Monthly goal reduce usage to 300 kWh.',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,
