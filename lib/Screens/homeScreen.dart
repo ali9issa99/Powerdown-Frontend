@@ -115,7 +115,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   void _addRoom(String roomName) {
     String imagePath =
         _getRoomImagePath(roomName); // Get image path based on room name
-    Provider.of<DeviceProvider>(context, listen: false)
+    Provider.of<RoomProvider>(context, listen: false)
         .addRoom(roomName, imagePath); // Add the room to the list
   }
 
@@ -172,7 +172,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
         ],
       ),
       body: Center(
-        child: Consumer<DeviceProvider>(
+        child: Consumer<RoomProvider>(
           builder: (context, roomProvider, child) {
             return roomProvider.selectedRooms.isEmpty
                 ? const Text(
