@@ -206,11 +206,11 @@ void _showDeleteConfirmationDialog(BuildContext context) {
   @override
   Widget build(BuildContext context) {
     print('Building RoomCard for roomId: $roomId');
-    return Consumer<DeviceProvider>(
+    return Consumer<RoomProvider>(
       builder: (context, provider, child) {
         // Get devices from the provider for this room
         final devices =
-            Provider.of<DeviceProvider>(context).getDevicesForRoom(roomId);
+            Provider.of<RoomProvider>(context).getDevicesForRoom(roomId);
         print('Devices in room $roomId: $devices');
         // Build device icons based on the devices
         List<Widget> deviceIcons = devices.toSet().map<Widget>((device) {
