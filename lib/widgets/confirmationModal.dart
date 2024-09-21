@@ -55,7 +55,7 @@ class ConfirmationModal extends StatelessWidget {
                   //   Provider.of<DeviceProvider>(context, listen: false)
                   //       .addRoom(selectedRoom, _getRoomImagePath(selectedRoom));
                   // }
-                  Provider.of<DeviceProvider>(context, listen: false)
+                  Provider.of<RoomProvider>(context, listen: false)
                          .pushRoom();
                   Navigator.pop(context);
                 },
