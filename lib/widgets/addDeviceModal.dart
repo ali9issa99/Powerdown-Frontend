@@ -333,7 +333,7 @@ class DeviceTile extends StatelessWidget {
     print('DeviceTile: selectedRoomId = $selectedRoomId, deviceName = $deviceName');
     
     // Fetch devices for this room using roomId (UUID)
-    final devices = Provider.of<DeviceProvider>(context).getDevicesForRoom(selectedRoomId);
+    final devices = Provider.of<RoomProvider>(context).getDevicesForRoom(selectedRoomId);
     final isDeviceAdded = devices.contains(deviceName); // Check if the device is added
 
     return Container(
@@ -361,7 +361,7 @@ class DeviceTile extends StatelessWidget {
                     ? null // Disable the button if the device is already added
                     : () {
                         // Add the device to the room using roomId (UUID)
-                        Provider.of<DeviceProvider>(context, listen: false)
+                        Provider.of<RoomProvider>(context, listen: false)
                             .addDeviceToRoom(selectedRoomId, deviceName, );
                       },
                 icon: Icon(Icons.add,
