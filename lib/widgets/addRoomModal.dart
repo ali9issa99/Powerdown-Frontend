@@ -70,7 +70,7 @@ class _AddRoomModalState extends State<AddRoomModal> {
           const SizedBox(height: 100),
           ElevatedButton(
             onPressed: () {
-              Provider.of<DeviceProvider>(context,listen: false).setRoomName(_selectedRoom);
+              Provider.of<RoomProvider>(context,listen: false).setRoomName(_selectedRoom);
               
               Navigator.pop(context);
 
