@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'signupScreen.dart'; // Import the SignUpScreen
+import 'package:shared_preferences/shared_preferences.dart'; // For saving JWT token
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +16,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   String errorMessage = '';
 
+  // Function to save JWT Token and userId to SharedPreferences
+  Future<void> saveLoginData(String token, String userId) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('jwt_token', token);
+    await prefs.setString('user_id', userId); // Save userId for later
+  }
+
   Future<void> _login() async {
     final String email = _emailController.text;
     final String password = _passwordController.text;
@@ -27,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     // Use your machine's local IP if testing on a real device or 10.0.2.2 for an emulator
-    final url = Uri.parse('http://10.0.2.2:8080/auth/login'); 
+    final url = Uri.parse('http://10.0.2.2:8080/auth/login');
 
     try {
       final response = await http.post(
@@ -43,8 +51,20 @@ class _LoginScreenState extends State<LoginScreen> {
         final Map<String, dynamic> responseData = json.decode(response.body);
 
         if (responseData['success']) {
-          // Navigate to the add room page after successful login
-          Navigator.pushNamed(context, '/addRoom');
+          // Save JWT token after successful login
+          String token = responseData['token'];
+          String? userId = responseData['userId']; // Assuming '_id' is sent from the backend
+
+          if (userId != null) {
+            await saveLoginData(token, userId); // Save token and userId to SharedPreferences
+
+            // Navigate to the add room page after successful login
+            Navigator.pushNamed(context, '/addRoom');
+          } else {
+            setState(() {
+              errorMessage = 'Login failed: user ID is missing in the response.';
+            });
+          }
         } else {
           setState(() {
             errorMessage = responseData['message'] ?? 'Login failed.';
