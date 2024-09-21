@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:powerdown_frontend/widgets/navbar.dart'; // Import your BottomNavBar widget
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AiSuggestionsScreen extends StatefulWidget {
-  const AiSuggestionsScreen({Key? key}) : super(key: key);
+  final String userId; // Pass userId when navigating
+
+  const AiSuggestionsScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   _AiSuggestionsScreenState createState() => _AiSuggestionsScreenState();
@@ -22,43 +25,96 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
     fetchAiSuggestions(); // Fetch suggestions on widget load
   }
 
-  Future<void> fetchAiSuggestions() async {
-    final String userId = "your_user_id"; // Replace with the actual user ID
-    final url = Uri.parse(
-        'http://10.0.2.2:8080/users/$userId/aisuggestions'); // Updated API URL
+  // Function to fetch token from SharedPreferences
+  Future<String?> getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('jwt_token'); // Retrieve the stored JWT token
+  }
 
-    try {
-      final response = await http.get(url, headers: {
-        'Content-Type': 'application/json',
-        'Authorization':
-            'Bearer your_jwt_token', // Replace with actual JWT token if needed
-      });
+  // Function to fetch userId from SharedPreferences
+  Future<String?> getUserId() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('user_id');
+  }
 
-      if (response.statusCode == 200) {
-        final List<dynamic> suggestionsJson =
-            jsonDecode(response.body)['aiSuggestions'];
+Future<void> fetchAiSuggestions() async {
+  final String? token = await getToken(); // Get JWT token from SharedPreferences
+  final String? userId = await getUserId(); // Get userId from SharedPreferences
+
+  // If token or userId is not found, show an error
+  if (token == null || userId == null) {
+    setState(() {
+      aiSuggestions = ["No token or user ID found. Please log in again."];
+      isLoading = false;
+    });
+    return;
+  }
+
+  print("JWT Token: $token, UserId: $userId"); // Print the token and userId for debugging
+
+  final url = Uri.parse(
+      'http://10.0.2.2:8080/users/$userId/aisuggestions'); // Correct API URL
+
+  try {
+    final response = await http.get(url, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token', // Attach JWT token here
+    });
+
+    print("Response Status Code: ${response.statusCode}"); // Log the status code
+    print("Response Body: ${response.body}"); // Log the response body for debugging
+
+    if (response.statusCode == 200) {
+      // Ensure the response is a valid JSON object and 'aiSuggestions' is a list
+      final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+
+      if (jsonResponse['aiSuggestions'] != null &&
+          jsonResponse['aiSuggestions'] is List) {
+        final List<dynamic> suggestionsJson = jsonResponse['aiSuggestions'];
+
+        // Check if the suggestions are complex objects or contain 'suggestions' field
         setState(() {
-          aiSuggestions =
-              suggestionsJson.cast<String>(); // Cast to List<String>
+          aiSuggestions = suggestionsJson
+              .map((suggestion) {
+                if (suggestion is Map<String, dynamic>) {
+                  // Extract from 'suggestions' field instead of 'text'
+                  return suggestion['suggestions']?.toString() ?? 'Unknown Suggestion';
+                } else if (suggestion is String) {
+                  return suggestion;
+                } else {
+                  return 'Invalid Suggestion';
+                }
+              })
+              .cast<String>() // Ensure casting to List<String>
+              .toList();
           isLoading = false; // Stop loading once data is fetched
         });
       } else {
-        // Handle non-200 responses
         setState(() {
-          aiSuggestions = [
-            "Failed to load suggestions. Please try again later."
-          ];
+          aiSuggestions = ["No suggestions available."];
           isLoading = false;
         });
       }
-    } catch (error) {
-      // Handle errors
+    } else {
+      // Handle non-200 responses
       setState(() {
-        aiSuggestions = ["Error occurred: $error"];
+        aiSuggestions = [
+          "Failed to load suggestions. Please try again later."
+        ];
         isLoading = false;
       });
     }
+  } catch (error) {
+    // Handle errors
+    print("Error: $error"); // Log the error for debugging
+    setState(() {
+      aiSuggestions = ["Error occurred: $error"];
+      isLoading = false;
+    });
   }
+}
+
+
 
   void _onItemTapped(int index) {
     if (index != _selectedIndex) {
@@ -82,29 +138,29 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text(
-          'AI Suggestions',
-          style: TextStyle(
-            fontSize: 26,
-            fontWeight: FontWeight.w600,
-            backgroundColor: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false, // Disable default back button
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new,
-              color: Colors.black), // Custom back icon
-          onPressed: () {
-            Navigator.pop(context); // Navigate back to the previous screen
-          },
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.white,
+    appBar: AppBar(
+      title: const Text(
+        'AI Suggestions',
+        style: TextStyle(
+          fontSize: 26,
+          fontWeight: FontWeight.w600,
+          backgroundColor: Colors.white,
         ),
       ),
-      body: Padding(
+      backgroundColor: Colors.white,
+      automaticallyImplyLeading: false, // Disable default back button
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black), // Custom back icon
+        onPressed: () {
+          Navigator.pop(context); // Navigate back to the previous screen
+        },
+      ),
+    ),
+    body: SingleChildScrollView(
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,38 +169,44 @@ class _AiSuggestionsScreenState extends State<AiSuggestionsScreen> {
               height: _containerHeight, // Fixed height controlled in code
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(
-                    255, 245, 253, 239), // Light green background
+                color: const Color.fromARGB(255, 245, 253, 239), // Light green background
                 borderRadius: BorderRadius.circular(15.0),
               ),
               child: isLoading
                   ? const Center(
-                      child:
-                          CircularProgressIndicator()) // Show loader while fetching data
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: aiSuggestions
-                          .map((suggestion) => Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Text(
-                                  "• $suggestion",
-                                  style: const TextStyle(
-                                    fontSize: 18, // Increased text size
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ))
-                          .toList(),
-                    ),
+                      child: CircularProgressIndicator()) // Show loader while fetching data
+                  : aiSuggestions.isNotEmpty // Check if there are any suggestions
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: aiSuggestions
+                              .map((suggestion) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Text(
+                                      "• $suggestion",
+                                      style: const TextStyle(
+                                        fontSize: 18, // Increased text size
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                        )
+                      : const Center(
+                          child: Text(
+                            "No suggestions available.",
+                            style: TextStyle(fontSize: 18, color: Colors.black),
+                          ),
+                        ),
             ),
           ],
         ),
       ),
-      // Bottom Nav Bar with Analytics still selected
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped, // Handle navigation on tap
-      ),
-    );
-  }
+    ),
+    // Bottom Nav Bar with Analytics still selected
+    bottomNavigationBar: BottomNavBar(
+      selectedIndex: _selectedIndex,
+      onItemTapped: _onItemTapped, // Handle navigation on tap
+    ),
+  );
+}
 }
