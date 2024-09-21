@@ -3,10 +3,11 @@ import 'package:fl_chart/fl_chart.dart'; // For the graph/chart
 import 'package:powerdown_frontend/Screens/aisuggestionsScreen.dart';
 import 'package:powerdown_frontend/widgets/navbar.dart'; // Import your BottomNavBar widget
 import 'overviewScreen.dart'; // Import the OverviewScreen
-// import 'aiSuggestionsScreen.dart'; // Import the AiSuggestionsScreen
 
 class AnalyticsScreen extends StatefulWidget {
-  const AnalyticsScreen({Key? key}) : super(key: key);
+  final String userId; // Add userId as a parameter here
+
+  const AnalyticsScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   _AnalyticsScreenState createState() => _AnalyticsScreenState();
@@ -121,7 +122,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AiSuggestionsScreen(),
+                    builder: (context) => AiSuggestionsScreen(userId: widget.userId), // Pass userId to AiSuggestionsScreen
                   ),
                 );
               },
