@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:powerdown_frontend/provider/roomProvider.dart';
-import 'package:powerdown_frontend/provider/roomProvider.dart';
 import 'package:powerdown_frontend/widgets/addDeviceModal.dart';
 import 'package:powerdown_frontend/widgets/confirmationModal.dart';
 import 'package:provider/provider.dart';
