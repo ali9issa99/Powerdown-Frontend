@@ -64,7 +64,6 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   void _showAddDeviceModal(String selectedRoom) {
     showModalBottomSheet(
       context: context,
- 
       isScrollControlled: true,
       builder: (context) {
         return AddDeviceModal(
@@ -113,10 +112,10 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
   }
 
   void _addRoom(String roomName) {
-    String imagePath =
-        _getRoomImagePath(roomName); // Get image path based on room name
-    Provider.of<RoomProvider>(context, listen: false)
-        .addRoom(roomName, imagePath); // Add the room to the list
+    String imagePath = _getRoomImagePath(roomName);
+    String userId = 'yourUserId'; // Get the userId appropriately
+    Provider.of<RoomProvider>(context, listen: false).addRoom(
+         roomName, imagePath); // Pass userId, roomName, imagePath
   }
 
   // Function to get the image path based on room name
@@ -159,6 +158,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
           ),
         ),
         backgroundColor: Colors.white,
+        elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
@@ -190,12 +190,14 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
                       return RoomCard(
                         roomId: room.id, // Pass roomId here
                         roomName: room.name, // Room name
-                        imagePath:
-                            room.imagePath, // Image path for the room
+                        imagePath: room.imagePath, // Image path for the room
                         onDelete: () {
+                          String userId =
+                              'yourUserId'; // Get the userId appropriately
                           roomProvider.removeRoom(
-                              room.id); // Use removeRoom with roomId
+                               room.id); // Pass userId and roomId
                         },
+
                         onTap: () {
                           // Navigate to the room's details
                           Navigator.pushNamed(
