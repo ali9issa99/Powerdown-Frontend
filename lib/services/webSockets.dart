@@ -9,7 +9,7 @@ class HomeControlPage extends StatefulWidget {
 
 class _HomeControlPageState extends State<HomeControlPage> {
   final _channel = WebSocketChannel.connect(
-    Uri.parse('ws://10.0.2.2:8081'),  // Replace with your backend IP
+    Uri.parse('ws://10.0.2.2:8081'), // Replace with your backend IP
   );
 
   String sensorData = "No data yet";
@@ -57,19 +57,34 @@ class _HomeControlPageState extends State<HomeControlPage> {
           StreamBuilder(
             stream: _channel.stream,
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text("Waiting for sensor data..."),
+                );
+              } else if (snapshot.hasError) {
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text("Error: ${snapshot.error}"),
+                );
+              } else if (snapshot.hasData) {
                 final data = jsonDecode(snapshot.data as String);
                 if (data['type'] == 'sensorData') {
-                  sensorData = "LED Current: ${data['payload']['ledCurrent']} A\n"
-                               "Motor Current: ${data['payload']['motorCurrent']} A";
+                  sensorData =
+                      "LED Current: ${data['payload']['ledCurrent']} A\n"
+                      "Motor Current: ${data['payload']['motorCurrent']} A";
                 }
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(sensorData),
+                );
               }
               return Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Text(sensorData),
+                child: Text("No data yet"),
               );
             },
-          ),
+          )
         ],
       ),
     );
