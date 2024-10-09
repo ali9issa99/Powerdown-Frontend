@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:powerdown_frontend/widgets/navbar.dart'; // Import your BottomNavBar
 import 'package:powerdown_frontend/screens/profileDetails.dart'; // Import the ProfileDetails screen
 import 'package:powerdown_frontend/screens/notificationScreen.dart'; // Make sure you have the correct import for NotificationScreen
+import 'package:shared_preferences/shared_preferences.dart'; // Import for session handling, if you're using shared preferences
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -36,6 +37,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         // Already on Profile Screen, no action needed
         break;
     }
+  }
+
+  Future<void> _logout() async {
+    // Clear session data, e.g., remove token from SharedPreferences
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear(); // Remove all stored data, e.g., token, user ID, etc.
+
+    // Navigate to login screen and replace the current route to prevent going back
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   @override
@@ -148,7 +158,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 trailing: const Icon(Icons.arrow_forward_ios),
                 onTap: () {
-                  // Handle logout functionality
+                  // Call the logout function
+                  _logout();
                 },
               ),
             ),
