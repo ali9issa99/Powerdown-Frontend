@@ -17,8 +17,9 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => DeviceProvider()),
+        // ChangeNotifierProvider(create: (_) => DeviceProvider()),
         ChangeNotifierProvider(create: (_) => RoomProvider()),
+        // ChangeNotifierProvider(create: (_) => UserProvider()),
         // Other providers...
       ],
       child: MyApp(),
